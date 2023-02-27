@@ -1,0 +1,90 @@
+Website tekoa.co.ke
+
+-----------------------------------Registration-------------------------------
+Role:
+A-Hospital
+B-Supplier
+C-Customer
+
+A. If hospital
+(Registration form)
+Hospital name
+Person in charge
+Email
+Phone
+Logo
+Address
+
+
+B. If supplier
+Company name
+Contact person
+Email
+phone
+Address
+List of categories he supply
+
+
+C.Customer
+Name
+Phone
+Email
+Address
+
+
+(2)
+After signing up they need approval message will appear (thank you for your registration with Tekoa , we will contact you soon)
+Same text as email
+
+(3)
+After approval by email admin, automatic message will send to hospital or supplier or customer
+(4)
+After approval when hospital enters website he can now browse and inquire about any product ,
+
+(5)
+
+when click inquire a form will appear (if he already signed he doesn't need to sign again, if not he has to sign up page)
+The inquiry form fields will have
+Be default already
+Name of the product
+The user (hospital, customer, supplier)
+
+He will fullfill
+Quantity required
+Brand preferred
+Country of origin preferred
+Attach a photo or document
+Describe box then send.
+
+(6)
+When he goes to his dashboard he will find inquires he sent under each inquire quotation he received for this inquiry, inquires will be arranged by default by date added, he can sort quotations for each inquiry by date , price,
+(7)
+Supplier
+Supplier can do like hospital plus
+His dashboard will have the inquires had received , infront of each inquiry he can click to view and reply plus the status
+(8)
+For view
+what he will recieve
+Name of product
+Name of the user
+Type of the user (hospital, customer,supplier)
+Preferred brand
+Preferred country of origin
+(9)
+He will reply by filling the form :
+Attach a file or image(option)
+Price
+Brand
+Country of origin (option)
+Description
+Term of payment (cash or settlement or other)
+(10)
+Once quotation sent
+Then the quotations he has sent it has status (submitted,approved,declined)
+(11)
+After sign in under user icon
+Replace my orders with my quotations
+(12)
+Dashboard for supplier
+Will have button for inquiries that he has sent
+And quotations he has recieved
