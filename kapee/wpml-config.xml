@@ -1,0 +1,98 @@
+<wpml-config>
+	<admin-texts>
+        <key name="kapee_options">
+            <key name="google-map-api"/> 
+            <key name="mobile-navbar-label-shop"/> 
+            <key name="mobile-navbar-label-wishlist"/> 
+            <key name="mobile-navbar-label-cart"/> 
+            <key name="mobile-navbar-label-account"/> 
+            <key name="mobile-navbar-label-home"/> 
+            <key name="mobile-navbar-label-menu"/> 
+            <key name="mobile-navbar-label-compare"/> 
+            <key name="mobile-navbar-label-filter"/> 
+            <key name="mobile-navbar-label-order"/> 
+            <key name="mobile-navbar-label-order-tracking"/> 
+            <key name="mobile-navbar-label-sidebar"/> 
+            <key name="mobile-navbar-label-blog"/> 
+            <key name="copyright-text"/> 
+            <key name="header-phone-number"/> 
+            <key name="header-email"/> 
+            <key name="header-location"/> 
+            <key name="header-welcome-message"/> 
+            <key name="header-newsletter"/> 
+            <key name="shop-by-categories-title"/> 
+            <key name="search-placeholder-text"/> 
+            <key name="copyright-text"/> 
+            <key name="sale-product-label-percentage-text"/> 
+            <key name="sale-product-label-text"/> 
+            <key name="new-product-label-text"/> 
+            <key name="featured-product-label-text"/> 
+            <key name="outofstock-product-label-text"/> 
+            <key name="products-pagination-load-more-button-text"/> 
+            <key name="products-pagination-finished-message"/> 
+            <key name="product-quickbuy-button-text"/> 
+            <key name="single-product-countdown-tag"/> 
+            <key name="single-product-availability-instock-msg"/> 
+            <key name="single-product-availability-hurry-left-msg"/> 
+            <key name="single-product-availability-outstock-msg"/> 
+            <key name="product-bought-together-title"/> 
+            <key name="login-information"/> 
+            <key name="kapee-404_heading"/> 
+            <key name="kapee-404_content"/> 
+            <key name="kapee-404_btn_txt"/> 
+            <key name="blog-page-title-text"/> 
+            <key name="read-more-text"/> 
+            <key name="blog-pagination-load-more-button-text"/> 
+            <key name="blog-pagination-finished-message"/> 
+            <key name="single-post-title-text"/> 
+            <key name="portfolio-slug"/> 
+            <key name="portfolio-name"/> 
+            <key name="portfolio-singular-name"/> 
+            <key name="portfolio-cat-slug"/> 
+            <key name="portfolio-skill-slug"/> 
+            <key name="portfolio-pagination-load-more-button-text"/> 
+            <key name="portfolio-pagination-finished-message"/> 
+            <key name="portfolio-page-title-text"/> 
+            <key name="newsletter-delay"/> 
+            <key name="newsletter-x-scroll"/> 
+            <key name="newsletter-dont-show"/> 
+            <key name="newsletter-title"/> 
+            <key name="newsletter-tag-line"/> 
+            <key name="cookie-title"/> 
+            <key name="cookie-message-text"/> 
+            <key name="cookie-accept-text"/> 
+            <key name="cookie-see-more-text"/> 
+            <key name="cookie-see-more-link-custom"/> 
+            <key name="cookie-refuse-code"/> 
+        </key>
+    </admin-texts>
+	<custom-types>
+		<custom-type translate="1">portfolio</custom-type>
+		<custom-type translate="1">block</custom-type>
+		<custom-type translate="1">kp_size_chart</custom-type>
+		<custom-type translate="1">kp_custom_template</custom-type>
+	</custom-types>
+	<taxonomies>
+		<taxonomy translate="1">portfolio_cat</taxonomy>
+		<taxonomy translate="1">portfolio_skill</taxonomy>
+		<taxonomy translate="1">block_cat</taxonomy>
+		<taxonomy translate="1">brand</taxonomy>
+	</taxonomies>
+	<custom-fields>   
+		<custom-field action="translate">_kp_post_format_gallery</custom-field>
+		<custom-field action="translate">_kp_post_format_video</custom-field>
+		<custom-field action="translate">_kp_post_format_audio</custom-field>
+		<custom-field action="translate">_kp_post_format_quote</custom-field>
+		<custom-field action="translate">_kp_post_format_quote_author</custom-field>
+		<custom-field action="translate">_kp_post_format_quote_author_url</custom-field>
+		<custom-field action="translate">_kp_post_format_link_url</custom-field>
+		<custom-field action="translate">_kp_post_format_link_text</custom-field>
+		<custom-field action="translate">_kp_client_name</custom-field>
+		<custom-field action="translate">_kp_website_url</custom-field>
+		<custom-field action="translate">_kp_gallery_images</custom-field>
+		<custom-field action="translate">_kp_product_video</custom-field>
+		<custom-field action="translate">_kp_product_custom_tab_heading</custom-field>
+		<custom-field action="translate">_kp_product_custom_tab_content</custom-field>
+		<custom-field action="translate">_kp_custom_page_title</custom-field>
+    </custom-fields>     
+</wpml-config>

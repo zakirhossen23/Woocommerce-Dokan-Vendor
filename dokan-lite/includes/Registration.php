@@ -49,7 +49,7 @@ class Registration {
             }
         }
 
-        $allowed_roles = apply_filters( 'dokan_register_user_role', array( 'customer', 'seller' ) );
+        $allowed_roles = apply_filters( 'dokan_register_user_role', array( 'customer', 'seller','hospital' ) );
 
         // is the role name allowed or user is trying to manipulate?
         if ( isset( $post_data['role'] ) && ! in_array( $post_data['role'], $allowed_roles, true ) ) {
@@ -58,14 +58,33 @@ class Registration {
 
         $role = $post_data['role'];
 
-        $required_fields = apply_filters(
+        $required_fields_hospital = apply_filters(
             'dokan_seller_registration_required_fields', array(
-				'fname'    => __( 'Please enter your first name.', 'dokan-lite' ),
-				'lname'    => __( 'Please enter your last name.', 'dokan-lite' ),
-				'phone'    => __( 'Please enter your phone number.', 'dokan-lite' ),
-				'shopname' => __( 'Please provide a shop name.', 'dokan-lite' ),
+				'hospital-name'    => __( 'Please enter hospital name.', 'dokan-lite' ),
+				'person-incharge'    => __( 'Please enter person incharge.', 'dokan-lite' ),
+				'hospital-phone'    => __( 'Please enter phone number.', 'dokan-lite' ),
+				'logo' => __( 'Please upload a logo.', 'dokan-lite' ),
+				'hospital-address' => __( 'Please provide hospital address.', 'dokan-lite' ),
             )
         );
+
+
+        $required_fields = apply_filters(
+            'dokan_seller_registration_required_fields', array(
+				'company-name'    => __( 'Please enter your company name.', 'dokan-lite' ),
+				'contact-person'    => __( 'Please enter contact person.', 'dokan-lite' ),
+				'seller-phone'    => __( 'Please enter your phone number.', 'dokan-lite' ),
+				'seller-address'    => __( 'Please enter your address.', 'dokan-lite' ),
+            )
+        );
+
+        if ( $role === 'hospital' ) {
+            foreach ( $required_fields_hospital as $field => $msg ) {
+                if ( empty( trim( $post_data[ $field ] ) ) ) {
+                    return new WP_Error( "$field-error", $msg );
+                }
+            }
+        }
 
         if ( $role === 'seller' ) {
             foreach ( $required_fields as $field => $msg ) {
@@ -87,22 +106,35 @@ class Registration {
     public function set_new_vendor_names( $data ) {
         $post_data = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification
 
-        $allowed_roles = apply_filters( 'dokan_register_user_role', array( 'customer', 'seller' ) );
+        $allowed_roles = apply_filters( 'dokan_register_user_role', array('customer', 'seller','hospital') );
         $role          = ( isset( $post_data['role'] ) && in_array( $post_data['role'], $allowed_roles, true ) ) ? $post_data['role'] : 'customer';
 
         $data['role'] = $role;
 
-        if ( $role !== 'seller' ) {
-            return $data;
+        if ( $role === 'seller' ) {
+            $data['company_name']           = wp_strip_all_tags( $post_data['company-name'] );
+            $data['contact_person']         = wp_strip_all_tags( $post_data['contact-person'] );
+            $data['seller_phone']           = wp_strip_all_tags( $post_data['seller-phone'] );
+            $data['seller_address']         = wp_strip_all_tags( $post_data['seller-address'] );
+    
+        }else if  ( $role === 'hospital' ) {
+            $data['hospital_name']          = wp_strip_all_tags( $post_data['hospital-name'] );
+            $data['person_incharge']        = wp_strip_all_tags( $post_data['person-incharge'] );
+            $data['hospital_phone']         = wp_strip_all_tags( $post_data['hospital-phone'] );
+            $data['hospital_address']       = wp_strip_all_tags( $post_data['hospital-address'] );
+    
+        }else if ( $role === 'customer' ) {
+            $data['customer_name']          = wp_strip_all_tags( $post_data['customer-name'] );
+            $data['customer_phone']         = wp_strip_all_tags( $post_data['customer-phone'] );
+            $data['customer_address']       = wp_strip_all_tags( $post_data['customer-address'] );
+          
         }
 
-        $data['first_name']    = wp_strip_all_tags( $post_data['fname'] );
-        $data['last_name']     = wp_strip_all_tags( $post_data['lname'] );
-        $data['user_nicename'] = sanitize_user( $post_data['shopurl'] );
-
+       
         return $data;
     }
 
+    
     /**
      * Adds default dokan store settings when a new vendor registers
      *
@@ -114,10 +146,47 @@ class Registration {
     public function save_vendor_info( $user_id, $data ) {
         $post_data = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification
 
+        //$data = _ and $post_data = -
+         
+        if ( isset( $data['role'] ) && $data['role'] == 'hospital' ) {
+            $user_details = array(
+                'hospital_name'     => sanitize_text_field( wp_unslash( $data['hospital_name'] ) ),     
+                'person_incharge'     => sanitize_text_field( wp_unslash( $data['person_incharge'] ) ),
+                'hospital_phone'     => sanitize_text_field( wp_unslash( $data['hospital_phone'] ) ),
+                'hospital_address'     => sanitize_text_field( wp_unslash( $data['hospital_address'] ) )
+            );
+
+            update_user_meta( $user_id, 'user_details', $user_details );
+      
+            return;
+        }else if ( isset( $data['role'] ) && $data['role'] == 'customer' ) {
+            $user_details = array(
+                'customer_name'     => sanitize_text_field( wp_unslash( $data['customer_name'] ) ),     
+                'customer_phone'     => sanitize_text_field( wp_unslash( $data['customer_phone'] ) ),
+                'customer_address'     => sanitize_text_field( wp_unslash( $data['customer_address'] ) ),
+            );
+
+            update_user_meta( $user_id, 'user_details', $user_details );
+      
+            return;
+        }
+
+
+
+
         if ( ! isset( $data['role'] ) || $data['role'] !== 'seller' ) {
             return;
         }
 
+        $user_details = array(
+            'company_name'     => sanitize_text_field( wp_unslash( $data['company_name'] ) ),     
+            'contact_person'     => sanitize_text_field( wp_unslash( $data['contact_person'] ) ),
+            'seller_phone'     => sanitize_text_field( wp_unslash( $data['seller_phone'] ) ),
+            'seller_address'     => sanitize_text_field( wp_unslash( $data['seller_address'] ) )
+        );
+
+        update_user_meta( $user_id, 'user_details', $user_details );
+      
         $social_profiles = array();
 
         foreach ( dokan_get_social_profile_fields() as $key => $item ) {

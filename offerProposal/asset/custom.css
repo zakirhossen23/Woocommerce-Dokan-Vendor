@@ -1,0 +1,214 @@
+a.selected {
+  background-color:#1F75CC;
+  color:white;
+  z-index:100;
+}
+.modal-backdrop.show {
+  display: none;
+}
+.page-id-20 .fancybox-close-small {
+  display: none;
+}
+.xoo-el-action-sc.xoo-el-login-tgr {
+  color: #fff !important;
+}
+.btn-danger {
+  color: #fff !important;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+.modal-request {
+  margin: 40px auto !important;
+  width: 50% !important;
+  padding: 0 !important;
+}
+.messagepop {
+  background-color: #FFFFFF;
+border: 1px solid #999999;
+cursor: default;
+display: none;
+margin-top: 15px;
+position: fixed;
+text-align: left;
+width: 394px;
+z-index: 50;
+padding: 25px 25px 20px;
+z-index: 1000;
+top: 0;
+left: calc(50% - 200px);
+}
+
+label {
+  display: block;
+  margin-bottom: 3px;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+
+.messagepop p, .messagepop.div {
+  border-bottom: 1px solid #EFEFEF;
+  margin: 8px 0;
+  padding-bottom: 8px;
+}
+#request_quota , .xoo-el-action-sc{
+    background: #007cf5;
+color: #fff;
+padding: 20px;
+display: block;
+text-align: center;
+text-decoration: none;
+font-size: 20px;
+text-transform: capitalize;
+}
+
+
+.main-quiz-user table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.main-quiz-user td,.main-quiz-user  th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.delete_access span{
+  visibility: hidden;
+}
+
+.main-quiz-user tr:hover .delete_access span{
+  visibility: visible;
+}
+
+.main-quiz-user tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.main-quiz-user tr:hover {
+  background-color: darkgray;
+}
+.main-quiz-user .delete_access{
+    color: red;
+cursor: pointer;
+}
+.modal-request{
+  height: auto !important;
+}
+.modal-request label {
+  font-size: 1rem;
+  width: 200px;
+  padding: 10px;
+}
+.modal-request span {
+  padding: 10px;
+  font-size: 1rem;
+  color: rgba(0,0,0,.6);
+  display: inline-block;
+}
+.status_Approved {
+  color: green  !important;
+}
+.status_Refused {
+  color: red  !important;
+}
+.proposal_Submitted {
+  color: blue;
+}
+.pagination1{
+  display: block;
+  margin: 10px 0 ;
+}
+.pagination1 a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination1 a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.select2-container .select2-search__field,.select2-container .my-select.select2-selection{
+  padding: 0;
+  height: auto !important;
+}
+
+
+.nav-tabs {
+  border-bottom: 2px solid #DDD;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+  border-width: 0;
+}
+
+.nav-tabs>li>a {
+  border: none;
+  color: #666;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li>a:hover {
+  border: none;
+  color: #4285F4 !important;
+  background: transparent;
+}
+
+.nav-tabs>li>a::after {
+  content: "";
+  background: #4285F4;
+  height: 2px;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  bottom: -1px;
+  transition: all 250ms ease 0s;
+  transform: scale(0);
+}
+
+.nav-tabs>li.active>a::after,
+.nav-tabs>li:hover>a::after {
+  transform: scale(1);
+}
+
+.tab-nav>li>a::after {
+  background: #21527d none repeat scroll 0% 0%;
+  color: #fff;
+}
+
+.tab-pane {
+  padding: 15px 0;
+}
+
+.tab-content {
+  padding: 20px
+}
+
+.card {
+  background: #FFF none repeat scroll 0% 0%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+}
+
+.card ul li {
+  padding: 20px;
+}
+
+
+.row.my-4.req_details span {
+  padding: 10px 0;
+  display: block;
+  color: #777;
+}
+.row.my-4.req_details label {
+  padding: 10px 0;
+  font-size: 1rem;
+}
+.status_Ignored {
+  color: #999;
+}

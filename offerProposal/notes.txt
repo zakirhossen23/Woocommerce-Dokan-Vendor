@@ -1,0 +1,9 @@
+install wordpress wooc - cf7 - dokan        T
+contact request quota                       T [ sign up - send request   ] 
+save request                                T
+assign product with multi vendor            T
+admin approve request                       T [ approve - search ]
+show request on vendo dokan                 T [ show details - add proposal - remove props]  
+admin show props                            ...
+proposal show in customer
+

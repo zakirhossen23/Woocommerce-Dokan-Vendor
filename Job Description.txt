@@ -30,36 +30,36 @@ Name
 Phone
 Email
 Address
-
+-------------------------------------------------------------------------------------------------------
 
 (2)
 After signing up they need approval message will appear (thank you for your registration with Tekoa , we will contact you soon)
-Same text as email
+Same text as email----->Done
 
 (3)
-After approval by email admin, automatic message will send to hospital or supplier or customer
+After approval by email admin, automatic message will send to hospital or supplier or customer  --->Done
 (4)
-After approval when hospital enters website he can now browse and inquire about any product ,
+After approval when hospital enters website he can now browse and inquire (Qoute) about any product , ---->Done
 
 (5)
 
-when click inquire a form will appear (if he already signed he doesn't need to sign again, if not he has to sign up page)
+when click inquire(Request a qoute) a form will appear (if he already signed he doesn't need to sign again, if not he has to sign up page)
 The inquiry form fields will have
-Be default already
+By default already at supplier list.
 Name of the product
-The user (hospital, customer, supplier)
+The user (hospital, customer, supplier) name
 
-He will fullfill
+He will fullfill in that popup form
 Quantity required
 Brand preferred
 Country of origin preferred
 Attach a photo or document
 Describe box then send.
-
+------------->Done
 (6)
-When he goes to his dashboard he will find inquires he sent under each inquire quotation he received for this inquiry, inquires will be arranged by default by date added, he can sort quotations for each inquiry by date , price,
-(7)
+When he goes to his dashboard he will find inquires (Qoutes) he sent under each inquire quotation he received for this inquiry, inquires will be arranged by default by date added, he can sort quotations for each inquiry by date , price,
 Supplier
+(7)
 Supplier can do like hospital plus
 His dashboard will have the inquires had received , infront of each inquiry he can click to view and reply plus the status
 (8)
