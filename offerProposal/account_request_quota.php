@@ -6,7 +6,8 @@
 
 <?php
     $user = wp_get_current_user();
-    $roles = ( array ) $user->roles;
+    $role = array_keys($user->caps)[0];
+    // $roles = ( array ) $user->roles;
 
 ?>
 <?php
@@ -14,7 +15,7 @@
 if ( current_user_can('administrator')) 
     require_once( plugin_dir_path( __FILE__ ) . 'showing/admin_request_quota.php');
     
-else if(in_array('seller',$roles))
+else if( $role == 'seller')
     require_once( plugin_dir_path( __FILE__ ) . 'showing/vendor_request_quota.php');
 
 else require_once( plugin_dir_path( __FILE__ ) . 'showing/customer_request_quota.php');

@@ -59,10 +59,10 @@ function kapee_get_myaccount_menu() {
 										 'link'		=> $dashboard_url,
 										 'label'	=> esc_html__('My Profile','kapee'),
 								);
-	$woocommerce_account_menu['orders'] = array( 
-										'icon'		=> 'icon-credit-card',
-										 'link'		=> $orders_url,
-										 'label'	=> esc_html__('My Orders','kapee'),
+	$woocommerce_account_menu['quota'] = array( 
+										'icon'		=> 'fa fa-cogs',
+										 'link'		=> $dashboard_url. '/request-quota/',
+										 'label'	=> esc_html__('My Quotation','kapee'),
 								);
 	if( ! empty ( $tracking_pageid ) ):
 	$woocommerce_account_menu['order-tracking'] = array( 

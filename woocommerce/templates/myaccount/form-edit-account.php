@@ -22,29 +22,30 @@ do_action('woocommerce_before_edit_account_form'); ?>
 
 <form class="woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
 	<?php do_action('woocommerce_edit_account_form_start'); ?>
-	<?php $role_type = array_keys($user->caps)[0];$user_details = (object)$user_details ; ?>
+	<?php $role_type = array_keys($user->caps)[0];
+	$user_details = (object)$user_details; ?>
 	<?php if ($role_type === "hospital") { ?>
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_hospital_name"><?php esc_html_e('Hospital name', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_hospital_name" id="account_hospital_name" value="<?php echo esc_attr($user_details->hospital_name); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_hospital_name" id="account_hospital_name" value="<?php echo esc_attr($user_details->hospital_name); ?>" />
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_person_incharge"><?php esc_html_e('Person Incharge', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_person_incharge" id="account_person_incharge" value="<?php echo esc_attr($user_details->person_incharge); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_person_incharge" id="account_person_incharge" value="<?php echo esc_attr($user_details->person_incharge); ?>" />
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_hospital_phone"><?php esc_html_e('Phone', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_hospital_phone" id="account_hospital_phone" value="<?php echo esc_attr($user_details->hospital_phone); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_hospital_phone" id="account_hospital_phone" value="<?php echo esc_attr($user_details->hospital_phone); ?>" />
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_hospital_address"><?php esc_html_e('Address', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_hospital_address" id="account_hospital_address" value="<?php echo esc_attr($user_details->hospital_address); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_hospital_address" id="account_hospital_address" value="<?php echo esc_attr($user_details->hospital_address); ?>" />
 		</p>
 		<div class="clear"></div>
 
@@ -53,27 +54,34 @@ do_action('woocommerce_before_edit_account_form'); ?>
 	<?php if ($role_type === "seller") { ?>
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_company_name"><?php esc_html_e('Company Name', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_company_name" id="account_company_name" value="<?php echo esc_attr($user_details->company_name); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_company_name" id="account_company_name" value="<?php echo esc_attr($user_details->company_name); ?>" />
+		</p>
+		<div class="clear"></div>
+		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+			<label for="account_display_name"><?php esc_html_e('Display name', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_display_name" id="account_display_name" value="<?php echo esc_attr($user->display_name); ?>" /> <span><em><?php esc_html_e('This will be how your name will be displayed in the account section and in reviews', 'woocommerce'); ?></em></span>
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_contact_person"><?php esc_html_e('Contact Person', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_contact_person" id="account_contact_person" value="<?php echo esc_attr($user_details->contact_person); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_contact_person" id="account_contact_person" value="<?php echo esc_attr($user_details->contact_person); ?>" />
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_seller_phone"><?php esc_html_e('Phone Number', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_seller_phone" id="account_seller_phone" value="<?php echo esc_attr($user_details->seller_phone); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_seller_phone" id="account_seller_phone" value="<?php echo esc_attr($user_details->seller_phone); ?>" />
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_seller_address"><?php esc_html_e('Address', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_seller_address" id="account_seller_address" value="<?php echo esc_attr($user_details->seller_address); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_seller_address" id="account_seller_address" value="<?php echo esc_attr($user_details->seller_address); ?>" />
 		</p>
 		<div class="clear"></div>
+
+
 
 	<?php } ?>
 
@@ -81,24 +89,23 @@ do_action('woocommerce_before_edit_account_form'); ?>
 	<?php if ($role_type === "customer") { ?>
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_customer_name"><?php esc_html_e('Name', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_customer_name" id="account_customer_name" value="<?php echo esc_attr($user_details->customer_name); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_customer_name" id="account_customer_name" value="<?php echo esc_attr($user_details->customer_name); ?>" />
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_customer_phone"><?php esc_html_e('Phone Number', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_customer_phone" id="account_customer_phone" value="<?php echo esc_attr($user_details->customer_phone); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_customer_phone" id="account_customer_phone" value="<?php echo esc_attr($user_details->customer_phone); ?>" />
 		</p>
 		<div class="clear"></div>
 
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="account_customer_address"><?php esc_html_e('Address', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
-			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_customer_address" id="account_customer_address" value="<?php echo esc_attr($user_details->customer_address); ?>" /> 
+			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_customer_address" id="account_customer_address" value="<?php echo esc_attr($user_details->customer_address); ?>" />
 		</p>
 		<div class="clear"></div>
 
 	<?php } ?>
-
 
 	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 		<label for="account_email"><?php esc_html_e('Email address', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>

@@ -243,7 +243,7 @@
                                                         <button class="btn btn-primary btn-approve" data-class="<?= get_the_ID() ?>">Approve</button>
                                                     <?php } ?>
                                                     <?php if ($status != 'Refused') { ?>
-                                                        <button class="btn btn-danger  btn-refuse" data-class="<?= get_the_ID() ?>">Refuse</button>
+                                                        <button class="btn btn-danger  btn-refuse" data-class="<?= get_the_ID() ?>">Decline</button>
                                                     <?php } ?>
                                                     <a href="#" rel="modal:close" onclick="$.fancybox.close();jQuery('body').removeClass('modal-open');return false;" style="float: right;" class="btn btn-danger">Close</a>
                                                     <!-- show proposal edits  -->

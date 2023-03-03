@@ -18,7 +18,7 @@ if( ! kapee_get_option( 'header-login-register', 1 ) || ! KAPEE_WOOCOMMERCE_ACTI
 
 $user_data 					= wp_get_current_user();
 $myaccount_menu_location	= apply_filters( 'kapee_header_myaccount_menu_location', 'myaccount-menu' );
-$current_user 				= apply_filters( 'kapee_header_myaccount_username', $user_data->user_login );	
+$current_user 				= apply_filters( 'kapee_header_myaccount_username', $user_data->display_name );	
 $user_logged_in 			= apply_filters( 'kapee_header_myaccount_logged_in', is_user_logged_in() );
 $signinupText  				= apply_filters( 'kapee_header_myaccount_signinup_text', esc_html__( 'Sign In', 'kapee' ) );
 $orders  					= get_option( 'woocommerce_myaccount_orders_endpoint', 'orders' );

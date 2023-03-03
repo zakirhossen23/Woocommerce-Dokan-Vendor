@@ -217,7 +217,8 @@ class WC_Form_Handler {
 	 */
 	public static function save_account_details() {
 		$nonce_value = wc_get_var( $_REQUEST['save-account-details-nonce'], wc_get_var( $_REQUEST['_wpnonce'], '' ) ); // @codingStandardsIgnoreLine.
-
+	
+    
 		if ( ! wp_verify_nonce( $nonce_value, 'save_account_details' ) ) {
 			return;
 		}
@@ -264,10 +265,15 @@ class WC_Form_Handler {
 
             update_user_meta( $user_id, 'user_details', $user_details );
       
+            update_user_meta( $user_id, 'first_name', ((object)$user_details)->hospital_name );
+            update_user_meta( $user_id, 'nickname',((object)$user_details)->hospital_name);
+            $user->display_name =$account_hospital_name;
+       
 		}
 
 		if ($role_type === "seller"){
 			$account_company_name   = ! empty( $_POST['account_company_name'] ) ? wc_clean( wp_unslash( $_POST['account_company_name'] ) ) : '';
+			$account_display_name   = ! empty( $_POST['account_display_name'] ) ? wc_clean( wp_unslash( $_POST['account_display_name'] ) ) : '';
 			$account_contact_person   = ! empty( $_POST['account_contact_person'] ) ? wc_clean( wp_unslash( $_POST['account_contact_person'] ) ) : '';
 			$account_seller_phone   = ! empty( $_POST['account_seller_phone'] ) ? wc_clean( wp_unslash( $_POST['account_seller_phone'] ) ) : '';
 			$account_seller_address   = ! empty( $_POST['account_seller_address'] ) ? wc_clean( wp_unslash( $_POST['account_seller_address'] ) ) : '';
@@ -279,7 +285,8 @@ class WC_Form_Handler {
             );
 
             update_user_meta( $user_id, 'user_details', $user_details );
-      
+			$user->display_name =$account_display_name;
+       
 		}
 		if ($role_type === "customer"){
 			$account_customer_name   = ! empty( $_POST['account_customer_name'] ) ? wc_clean( wp_unslash( $_POST['account_customer_name'] ) ) : '';
@@ -294,6 +301,10 @@ class WC_Form_Handler {
 
             update_user_meta( $user_id, 'user_details', $user_details );
       
+            update_user_meta( $user_id, 'first_name', ((object)$user_details)->customer_name );
+            update_user_meta( $user_id, 'nickname',((object)$user_details)->customer_name);
+			$user->display_name =$account_customer_name;
+       
 		}
 
 

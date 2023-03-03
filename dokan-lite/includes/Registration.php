@@ -145,7 +145,8 @@ class Registration {
      */
     public function save_vendor_info( $user_id, $data ) {
         $post_data = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification
-
+        global $wpdb;
+    
         //$data = _ and $post_data = -
          
         if ( isset( $data['role'] ) && $data['role'] == 'hospital' ) {
@@ -157,7 +158,11 @@ class Registration {
             );
 
             update_user_meta( $user_id, 'user_details', $user_details );
-      
+            update_user_meta( $user_id, 'first_name', ((object)$user_details)->hospital_name );
+            update_user_meta( $user_id, 'nickname',((object)$user_details)->hospital_name);
+            
+            $wpdb->update($wpdb->users, array('display_name' => ((object)$user_details)->hospital_name), array('ID' => $user_id));
+       
             return;
         }else if ( isset( $data['role'] ) && $data['role'] == 'customer' ) {
             $user_details = array(
@@ -167,6 +172,9 @@ class Registration {
             );
 
             update_user_meta( $user_id, 'user_details', $user_details );
+            update_user_meta( $user_id, 'first_name', ((object)$user_details)->customer_name );
+            update_user_meta( $user_id, 'nickname',((object)$user_details)->customer_name);
+            $wpdb->update($wpdb->users, array('display_name' => ((object)$user_details)->customer_name), array('ID' => $user_id));
       
             return;
         }
@@ -186,7 +194,7 @@ class Registration {
         );
 
         update_user_meta( $user_id, 'user_details', $user_details );
-      
+        
         $social_profiles = array();
 
         foreach ( dokan_get_social_profile_fields() as $key => $item ) {

@@ -43,7 +43,7 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo esc_html( $current_user->display_name ); ?> <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="<?php echo esc_url( dokan_get_page_url( 'my_orders' ) ); ?>"><?php esc_html_e( 'My Orders', 'dokan-lite' ); ?></a></li>
+                <li><a href="<?php echo esc_url( dokan_get_page_url( 'request_quota' ) ); ?>"><?php esc_html_e( 'My Quotations', 'dokan-lite' ); ?></a></li>
                 <li><a href="<?php echo esc_url( dokan_get_page_url( 'myaccount', 'woocommerce' ) ); ?>"><?php esc_html_e( 'My Account', 'dokan-lite' ); ?></a></li>
                 <li><a href="<?php echo esc_url( wc_customer_edit_account_url() ); ?>"><?php esc_html_e( 'Edit Account', 'dokan-lite' ); ?></a></li>
                 <li class="divider"></li>

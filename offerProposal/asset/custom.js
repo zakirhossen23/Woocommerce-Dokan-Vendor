@@ -53,11 +53,12 @@ jQuery(document).ready(function() {
             { data: 'ID' },        
             { data: 'Vendor' },
             { data: 'Price' },
+            { data: 'Date' },
             { data: 'Status' },
             { data: 'Options'},
         ],
     "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 0,4 ] }
+          { 'bSortable': false, 'aTargets': [ 0,5 ] }
        ],
         pageLength: 25
     });
@@ -203,25 +204,27 @@ jQuery(document).ready(function() {
     // submit proposal 
     jQuery('.btn-submit-proposal').click(function(){
       var req_id = jQuery(this).data('class');  
-      if (jQuery('input[name=price_'+req_id+']').val() ==""){
-        alert('submitted price not a number ');
-      } else {
-        
-        var data = {
-            'action': 'submit_proposal', //     
-            'request_id': req_id,
-            'price': jQuery('input[name=price_'+req_id+']').val(),
-            'notes': jQuery('textarea[name=notes_'+req_id+']').val(),
-            
-        };
 
-        // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-        jQuery.post(xoo_el_localize.adminurl, data, function(response) {
-            alert('proposal submitted succesfully.');
-            location.reload(); 
-        });
+      if (jQuery('input[name=price_'+req_id+']').val() =="")return  alert('submitted price is not a number');
+      if (jQuery('input[name=brand_'+req_id+']').val() =="")return  alert('submitted Brand is empty');
+      if (jQuery('input[name=notes_'+req_id+']').val() =="")return  alert('submitted description is empty');
+
+      var data = {
+        'action': 'submit_proposal', //     
+        'request_id': req_id,
+        'price': jQuery('input[name=price_'+req_id+']').val(),
+        'brand': jQuery('input[name=brand_'+req_id+']').val(),
+        'country': jQuery('input[name=country_'+req_id+']').val(),
+        'notes': jQuery('textarea[name=notes_'+req_id+']').val(),
+        'term': jQuery('[name=term_'+req_id+']:checked').val(),
         
-      }
+    };
+
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    jQuery.post(xoo_el_localize.adminurl, data, function(response) {
+        alert('proposal submitted succesfully.');
+        location.reload(); 
+    });
     });
     
     jQuery('.btn-approve-proposal').click(function(){
@@ -238,6 +241,21 @@ jQuery(document).ready(function() {
             location.reload(); 
         });
     });
+    
+    jQuery('.btn-decline-proposal').click(function(){
+        var proposal_id = jQuery(this).data('class');
+        var data = {
+              'action': 'decline_proposal', //     
+              'proposal_id': proposal_id,
+              
+          };
+  
+          // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+          jQuery.post(xoo_el_localize.adminurl, data, function(response) {
+              alert('proposal Declined succesfully.');
+              location.reload(); 
+          });
+      });
     
     // btn-remove-proposal
     jQuery('.btn-remove-proposal').click(function(){

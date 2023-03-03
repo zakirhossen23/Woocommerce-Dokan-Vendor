@@ -69,6 +69,13 @@ function approve_user_fn(){
 
     $user_id = (int) $_POST['user_id'];	
     $wpdb->update($wpdb->users, array('user_status' => 0), array('ID' => $user_id));
+   
+    $user = new WP_User( $user_id );
+    $role = reset( $user->roles );
+
+    if ( $role == 'seller' ) {
+        update_user_meta( $user_id, 'dokan_enable_selling', 'yes' );
+    }
 
     // send mail to admin / seller
     include  plugin_dir_path( __FILE__ )  . 'emails/approve_user.php';
@@ -81,11 +88,17 @@ add_action( 'wp_ajax_reject_user', 'reject_user_fn' );
 add_action( 'wp_ajax_nopriv_reject_user', 'reject_user_fn' );
 
 function reject_user_fn(){
-    $user               = new stdClass();
-    $user->ID           = $_POST['user_id'];
-    $user->user_status  = 2;
-    wp_update_user( $user );
+    global $wpdb;
 
+    $user_id = (int) $_POST['user_id'];	
+    $wpdb->update($wpdb->users, array('user_status' => 2), array('ID' => $user_id));
+   
+    $user = new WP_User( $user_id );
+    $role = reset( $user->roles );
+
+    if ( $role == 'seller' ) {
+        update_user_meta( $user_id, 'dokan_enable_selling', 'no' );
+    }
     die ;
 }
 
@@ -98,7 +111,10 @@ add_action( 'wp_ajax_nopriv_submit_proposal', 'submit_proposal_fn' );
 function submit_proposal_fn(){
     $req_id = $_POST['request_id'];
     $price = $_POST['price'];
+    $brand = $_POST['brand'];
+    $country = $_POST['country'];
     $notes = $_POST['notes'];
+    $term = $_POST['term'];
     
     $post_id = wp_insert_post(array (
                     'post_type' => 'rfq_proposal',
@@ -115,6 +131,9 @@ function submit_proposal_fn(){
         // insert post meta
         update_post_meta($post_id, 'request', $req_id );
         update_post_meta($post_id, 'price', $price);
+        update_post_meta($post_id, 'brand', $brand);
+        update_post_meta($post_id, 'country', $country);
+        update_post_meta($post_id, 'term', $term);
         update_post_meta($post_id, 'status', 'Submitted');
         // notify user by mail
         
@@ -133,6 +152,9 @@ function remove_proposal_fn(){
     if($proposal && $proposal->post_author == get_current_user_id() ){
         delete_post_meta($post_id, 'request' );
         delete_post_meta($post_id, 'price');
+        delete_post_meta($post_id, 'brand');
+        delete_post_meta($post_id, 'country');
+        delete_post_meta($post_id, 'term');
         delete_post_meta($post_id, 'status');
         wp_delete_post($_POST['proposal_id']);
     }
@@ -176,6 +198,26 @@ function approve_proposal_fn(){
     die ; 
 }
 
+//decline_proposal
+add_action( 'wp_ajax_decline_proposal', 'decline_proposal_fn' );
+add_action( 'wp_ajax_nopriv_decline_proposal', 'decline_proposal_fn' );
+
+function decline_proposal_fn(){
+    //echo 'send mail';
+    //include  plugin_dir_path( __FILE__ )  . 'emails/approve_request.php';
+    //echo send_approve();
+    //die ;
+    $proposal = get_post($_POST['proposal_id']);
+    if ($proposal){
+        $request_id = get_post_meta($proposal->ID, 'request',true );
+        $request  = get_post($request_id);
+        if ($request->post_author == get_current_user_id()){
+         
+            update_post_meta($proposal->ID, 'status','Declined');
+        }
+    }
+    die ; 
+}
 // add user meta
 add_action( 'show_user_profile', 'erweb_add_extra_social_links' );
 add_action( 'edit_user_profile', 'erweb_add_extra_social_links' );

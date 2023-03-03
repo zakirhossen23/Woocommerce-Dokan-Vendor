@@ -9,6 +9,9 @@ a.selected {
 .page-id-20 .fancybox-close-small {
   display: none;
 }
+.dataTables_wrapper .dataTables_length select{
+  width: 4rem;
+}
 .xoo-el-action-sc.xoo-el-login-tgr {
   color: #fff !important;
 }
@@ -93,7 +96,7 @@ text-transform: capitalize;
 cursor: pointer;
 }
 .modal-request{
-  height: auto !important;
+  /* height: auto !important; */
 }
 .modal-request label {
   font-size: 1rem;
@@ -110,6 +113,9 @@ cursor: pointer;
   color: green  !important;
 }
 .status_Refused {
+  color: red  !important;
+}
+.status_Declined {
   color: red  !important;
 }
 .proposal_Submitted {

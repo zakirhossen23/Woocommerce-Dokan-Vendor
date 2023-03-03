@@ -86,6 +86,7 @@
                             <th>ID</th>
                             <th>Supplier</th>
                             <th>Price</th>
+                            <th>Date</th>
                             <th>Status</th>
                             <th>Options</th>
                         </tr>
@@ -100,13 +101,15 @@
 
                                 <td><a href="<?= $vendor->get_shop_url() ?>" target="_blank"><?= get_the_author_meta('display_name', $proposal->post_author) ?></a></td>
                                 <td><?= get_post_meta($proposal->ID, 'price', true) ?></td>
+                                <td><?= $proposal->post_date ?></td>
                                 <td class="status_<?= get_post_meta($proposal->ID, 'status', true) ?>"><?= get_post_meta($proposal->ID, 'status', true) ?></td>
                                 <td class="delete_access">
                                     <?php
+                                    $statusproposal = get_post_meta($proposal->ID, 'status', true);
                                     $choosen = get_post_meta($s_request->ID, 'chosen', true);
                                     if (!$choosen) { ?>
                                         <span>
-                                            <div id="modal_<?= $proposal->ID ?>" class="modal modal-request">
+                                            <div id="modal_<?= $proposal->ID ?>" class="modal modal-request" style="left: 24%;;margin-bottom: 6px;height: 93vh !important;">
                                                 <!-- show proposal edits  -->
                                                 <div class="container p-4">
                                                     <div>
@@ -119,19 +122,19 @@
                                                         <label>Quantity </label> <span><?= get_post_meta($s_request->ID, 'quantity', true) ?></span>
                                                     </div>
                                                     <div>
-                                                        <label>Company </label> <span><?= get_post_meta($s_request->ID, 'company', true) ?></span>
+                                                        <label>Brand Name </label> <span><?= get_post_meta($s_request->ID, 'brand', true); ?></span>
                                                     </div>
                                                     <div>
-                                                        <label>Address </label> <span><?= get_post_meta($s_request->ID, 'address', true) ?></span>
+                                                        <label>Country of origin </label> <span><?= get_post_meta($s_request->ID, 'country', true); ?></span>
                                                     </div>
                                                     <div>
                                                         <label>Status </label><span class="status_<?= $status ?>"><?= $status ?></span>
                                                     </div>
                                                     <div>
-                                                        <label>Date </label><span><?= $s_request->post_date ?></span>
+                                                        <label>Date </label><span><?= date('Y-m-d h:i:s A', $s_request->post_date) ?></span>
                                                     </div>
                                                     <div>
-                                                        <label>last update</label><span><?= $s_request->post_modified ?></span>
+                                                        <label>last update</label><span><?= date('Y-m-d h:i:s A', $s_request->post_modified) ?></span>
                                                     </div>
                                                     <div>
                                                         <label>Notes </label> <span><?= get_post_meta($s_request->ID, 'notes', true) ?></span>
@@ -149,15 +152,18 @@
                                                             <?= $proposal->post_content ?></span>
                                                     </div>
                                                     <br>
-                                                    <span><label style="width: 100%;font-weight: 600;text-align: center;">Are you Sure of Approve this Proposal ?</label><br>
+                                                    <span><label style="width: 100%;font-weight: 600;text-align: center;">Are you sure to Approve this Proposal?</label><br>
                                                         once you approve folowing will happen : <br>
                                                         1- this proposal status will change to approved<br>
                                                         2- other proposals will be ignored<br>
                                                         3- a notification will be sent to us<br>
                                                         <!--4- a new custom order will be created and you can find in my account -> my order--> <br><br><br></span>
                                                     <div class="100%">
+                                                        <?php if ( $statusproposal !== "Declined"):?>
                                                         <button class="btn btn-success btn-approve-proposal" data-class="<?= $proposal->ID ?>">Approve</button>
-
+                                                        
+                                                        <button class="btn btn-danger  btn-decline-proposal" data-class="<?=$proposal->ID  ?>">Decline</button>
+                                                        <?php endif ?>
                                                         <a href="#" onclick="$.fancybox.close();return false;" style="float: right;" class="btn btn-danger">Close</a>
                                                     </div>
                                                     <!-- show proposal edits  -->
@@ -166,7 +172,7 @@
                                             <!-- Link to open the modal -->
 
                                             <a href="#modal_<?= $proposal->ID ?>" style="" class="fancybox">
-                                                <i class="fa fa-check" style="color:blue;"></i>
+                                                <i class="fa fa-eye" style="color:blue;"></i>
                                             </a>
 
                                         </span>

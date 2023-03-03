@@ -59,6 +59,7 @@ Describe box then send.
 (6)
 When he goes to his dashboard he will find inquires (Qoutes) he sent under each inquire quotation he received for this inquiry, inquires will be arranged by default by date added, he can sort quotations for each inquiry by date , price,
 Supplier
+-------------->Done
 (7)
 Supplier can do like hospital plus
 His dashboard will have the inquires had received , infront of each inquiry he can click to view and reply plus the status
@@ -67,9 +68,10 @@ For view
 what he will recieve
 Name of product
 Name of the user
-Type of the user (hospital, customer,supplier)
+Type of the user (hospital, customer)
 Preferred brand
 Preferred country of origin
+----------->Done
 (9)
 He will reply by filling the form :
 Attach a file or image(option)
@@ -78,13 +80,55 @@ Brand
 Country of origin (option)
 Description
 Term of payment (cash or settlement or other)
+----------------->Done
 (10)
 Once quotation sent
 Then the quotations he has sent it has status (submitted,approved,declined)
+----------------->Done
 (11)
 After sign in under user icon
 Replace my orders with my quotations
+-------------------->Done
 (12)
 Dashboard for supplier
 Will have button for inquiries that he has sent
 And quotations he has recieved
+--------->Done
+
+-----------------------------Comments------------------------------
+1)
+Ok another term issue sorry
+
+Vendor is the supplier I don't add he register
+
+It is empty because No vendor send proposal yet
+
+
+
+Let me break down terms
+Supplier=vendor
+Hospital or customer= ask for a quotation
+Supplier = send a proposal
+
+
+2)
+Only customers and hospitals can ask for a quotation
+
+Suppliers or vendors who are assigned to products can receive the quotation and then reply
+
+3)Under product when u edit you can assign vendors
+
+4)
+I want the supplier receive the name of the product and the name of the user who requested so may be not in the form here but it will be shown to the supplier
+--------->done
+5)
+We use hospital name and customer actual names  ----->Done
+----------------------------------------------------------------------------
+
+6)if customer decline proposal can he again approve it or view it?
+Ans: View only
+-------------->Done
+
+
+
+
