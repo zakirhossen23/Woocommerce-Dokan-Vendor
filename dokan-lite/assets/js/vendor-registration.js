@@ -190,7 +190,12 @@
     // boot the class onReady
     $(function () {
         Dokan_Vendor_Registration.init();
-        Dokan_Vendor_Registration.hideOtherForm("customer", $('.radio')[0].closest("p"));
+        $(".new-signup").click(()=>{
+            setTimeout(()=>{
+                Dokan_Vendor_Registration.hideOtherForm($('[name="current-role"]').val(), $('.radio')[0].closest("p"), $('.radio')[0]);
+            },200);
+        })
+      
         // trigger change if there is an error while registering
         var shouldTrigger = $('.woocommerce ul').hasClass('woocommerce-error') && !$('.show_if_seller').is(':hidden');
 

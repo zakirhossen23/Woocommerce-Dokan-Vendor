@@ -15,7 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <footer id="footer" class="site-footer">	
-	
 	<?php do_action( 'kapee_footer_top' ); ?>
 	
 	<?php if( $site_footer ) { ?>
@@ -62,5 +61,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php }?>
 	
 	<?php do_action( 'kapee_footer_bottom' ); ?>
-	
 </footer><!-- .site-footer -->

@@ -222,10 +222,14 @@
                                                         <div class="col-md-6"><span><?= $user ?></span></div>
                                                         <div class="col-md-6"><label>Quantity </label></div>
                                                         <div class="col-md-6"><span><?= get_post_meta(get_the_ID(), 'quantity', true) ?></span></div>
-                                                        <div class="col-md-6"><label>Company </label></div>
-                                                        <div class="col-md-6"><span><?= get_post_meta(get_the_ID(), 'company', true) ?></span></div>
-                                                        <div class="col-md-6"><label>Address </label></div>
-                                                        <div class="col-md-6"><span><?= get_post_meta(get_the_ID(), 'address', true) ?></span></div>
+                                                        <div class="col-md-6"><label>Brand Name </label></div>
+                                                        <div class="col-md-6"><span><?= get_post_meta(get_the_ID(), 'brand', true) ?></span></div>
+                                                        <div class="col-md-6"><label>Country of origin </label></div>
+                                                        <div class="col-md-6"><span><?= get_post_meta(get_the_ID(), 'country', true)  ?></span></div>
+                                                        <div class="col-md-6"><label>Attachment</label></div>
+                                                        <div class="col-md-6"><span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta(get_the_ID(), 'attachment', true) ?>"> <?= get_post_meta(get_the_ID(), 'attachment_name', true) ?></a></span></div>
+
+
                                                         <div class="col-md-6"><label>Status </label></div>
                                                         <div class="col-md-6"><span class="status_<?= $status ?>"><?= $status ?></span></div>
                                                         <div class="col-md-6"><label>Date </label></div>
@@ -254,17 +258,19 @@
                                                     <table>
                                                         <tr>
                                                             <th>ID</th>
-                                                            <th>Vendor</th>
+                                                            <th>Supplier</th>
                                                             <th>Price</th>
+                                                            <th>Attachment</th>
+                                                            <th>Date</th>
                                                             <th>Status</th>
-
                                                         </tr>
                                                         <?php foreach ($proposals as $proposal) { ?>
                                                             <tr>
                                                                 <td><?= ($proposal->ID) ?></td>
-
                                                                 <td><?= get_the_author_meta('display_name', $proposal->post_author) ?></td>
                                                                 <td><?= get_post_meta($proposal->ID, 'price', true) ?></td>
+                                                                <td>  <span ><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta($proposal->ID, 'attachment', true) ?>"> <?= get_post_meta($proposal->ID, 'attachment_name', true) ?></a></span></td>
+                                                                <td><?= $proposal->post_date ?></td>
                                                                 <td class="status_<?= get_post_meta($proposal->ID, 'status', true) ?>"><?= get_post_meta($proposal->ID, 'status', true) ?></td>
 
                                                             </tr>

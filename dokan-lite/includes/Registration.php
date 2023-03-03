@@ -63,7 +63,6 @@ class Registration {
 				'hospital-name'    => __( 'Please enter hospital name.', 'dokan-lite' ),
 				'person-incharge'    => __( 'Please enter person incharge.', 'dokan-lite' ),
 				'hospital-phone'    => __( 'Please enter phone number.', 'dokan-lite' ),
-				'logo' => __( 'Please upload a logo.', 'dokan-lite' ),
 				'hospital-address' => __( 'Please provide hospital address.', 'dokan-lite' ),
             )
         );
@@ -106,6 +105,7 @@ class Registration {
     public function set_new_vendor_names( $data ) {
         $post_data = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification
 
+    
         $allowed_roles = apply_filters( 'dokan_register_user_role', array('customer', 'seller','hospital') );
         $role          = ( isset( $post_data['role'] ) && in_array( $post_data['role'], $allowed_roles, true ) ) ? $post_data['role'] : 'customer';
 
@@ -116,6 +116,7 @@ class Registration {
             $data['contact_person']         = wp_strip_all_tags( $post_data['contact-person'] );
             $data['seller_phone']           = wp_strip_all_tags( $post_data['seller-phone'] );
             $data['seller_address']         = wp_strip_all_tags( $post_data['seller-address'] );
+            $data['seller_categories']      = $post_data['seller-categories'];
     
         }else if  ( $role === 'hospital' ) {
             $data['hospital_name']          = wp_strip_all_tags( $post_data['hospital-name'] );
@@ -146,23 +147,30 @@ class Registration {
     public function save_vendor_info( $user_id, $data ) {
         $post_data = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification
         global $wpdb;
-    
+     
+        $user   = new \stdClass();
+        $user->ID     = (int)$user_id;
+
         //$data = _ and $post_data = -
          
         if ( isset( $data['role'] ) && $data['role'] == 'hospital' ) {
+           
+            $my_custom_filename = time() . $_FILES['logo']['name'];
+            $output = wp_upload_bits( $my_custom_filename , null, file_get_contents($_FILES['logo']['tmp_name']));
+           
             $user_details = array(
                 'hospital_name'     => sanitize_text_field( wp_unslash( $data['hospital_name'] ) ),     
                 'person_incharge'     => sanitize_text_field( wp_unslash( $data['person_incharge'] ) ),
                 'hospital_phone'     => sanitize_text_field( wp_unslash( $data['hospital_phone'] ) ),
+                'hospital_logo'     => sanitize_text_field( wp_unslash( $output['url']) ),
                 'hospital_address'     => sanitize_text_field( wp_unslash( $data['hospital_address'] ) )
             );
 
             update_user_meta( $user_id, 'user_details', $user_details );
             update_user_meta( $user_id, 'first_name', ((object)$user_details)->hospital_name );
             update_user_meta( $user_id, 'nickname',((object)$user_details)->hospital_name);
-            
-            $wpdb->update($wpdb->users, array('display_name' => ((object)$user_details)->hospital_name), array('ID' => $user_id));
-       
+            $user->display_name = ((object)$user_details)->hospital_name;
+            wp_update_user( $user );
             return;
         }else if ( isset( $data['role'] ) && $data['role'] == 'customer' ) {
             $user_details = array(
@@ -174,8 +182,8 @@ class Registration {
             update_user_meta( $user_id, 'user_details', $user_details );
             update_user_meta( $user_id, 'first_name', ((object)$user_details)->customer_name );
             update_user_meta( $user_id, 'nickname',((object)$user_details)->customer_name);
-            $wpdb->update($wpdb->users, array('display_name' => ((object)$user_details)->customer_name), array('ID' => $user_id));
-      
+            $user->display_name = ((object)$user_details)->customer_name;
+            wp_update_user( $user );
             return;
         }
 
@@ -190,7 +198,8 @@ class Registration {
             'company_name'     => sanitize_text_field( wp_unslash( $data['company_name'] ) ),     
             'contact_person'     => sanitize_text_field( wp_unslash( $data['contact_person'] ) ),
             'seller_phone'     => sanitize_text_field( wp_unslash( $data['seller_phone'] ) ),
-            'seller_address'     => sanitize_text_field( wp_unslash( $data['seller_address'] ) )
+            'seller_address'     => sanitize_text_field( wp_unslash( $data['seller_address'] ) ),
+            'seller_categories'     => $data['seller_categories']  
         );
 
         update_user_meta( $user_id, 'user_details', $user_details );

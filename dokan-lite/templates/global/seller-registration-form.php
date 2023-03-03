@@ -6,17 +6,41 @@
  * @since 2.4
  */
 ?>
+<style>
 
-<div class="show_if_hospital"   style="<?php echo esc_attr($role_style); ?>">
+button.select2-selection__clear {
+    background-color:red !important;
+    width:20px
+    
+}
+
+span.select2-selection.select2-selection--multiple.select2-selection--clearable {
+    display: flow-root;
+}
+textarea.select2-search__field {
+    min-height:auto !important;
+}
+span.select2-selection.select2-selection--multiple {
+    height: 100%;
+    vertical-align: middle;
+}
+span.selection {
+    height: 100%;
+    display: grid;
+}
+</style>
+<input type="text" value="<?= $role ?>" name="current-role" hidden />
+
+<div class="show_if_hospital">
 
     <div class="split-row form-row-wide">
         <p class="form-row form-group">
             <label for="hospital-name">
                 <?php esc_html_e('Hospital name', 'dokan-lite'); ?> <span class="required">*</span>
             </label>
-            <input type="text" class="input-text form-control" name="hospital-name" id="hospital-name" disabled value="<?php if (!empty($postdata['hname'])) {
-                                                                                                            echo esc_attr($postdata['hname']);
-                                                                                                        } ?>" required="required" />
+            <input type="text" class="input-text form-control" name="hospital-name" id="hospital-name" disabled value="<?php if (!empty($postdata['hospital-name'])) {
+                                                                                                                            echo esc_attr($postdata['hospital-name']);
+                                                                                                                        } ?>" required="required" />
         </p>
     </div>
 
@@ -24,9 +48,9 @@
         <label for="person-incharge">
             <?php esc_html_e('Person in charge', 'dokan-lite'); ?> <span class="required">*</span>
         </label>
-        <input type="text" class="input-text form-control" name="person-incharge" id="person-incharge" disabled value="<?php if (!empty($postdata['personincharge'])) {
-                                                                                                                    echo esc_attr($postdata['personincharge']);
-                                                                                                                } ?>" required="required" />
+        <input type="text" class="input-text form-control" name="person-incharge" id="person-incharge" disabled value="<?php if (!empty($postdata['person-incharge'])) {
+                                                                                                                            echo esc_attr($postdata['person-incharge']);
+                                                                                                                        } ?>" required="required" />
     </p>
 
     <p class="form-row form-group form-row-wide">
@@ -34,8 +58,8 @@
             <?php esc_html_e('Phone', 'dokan-lite'); ?> <span class="required">*</span>
         </label>
         <input type="text" class="input-text form-control" name="hospital-phone" id="hospital-phone" disabled value="<?php if (!empty($postdata['hospital-phone'])) {
-                                                                                                echo esc_attr($postdata['hospital-phone']);
-                                                                                            } ?>" required="required" />
+                                                                                                                            echo esc_attr($postdata['hospital-phone']);
+                                                                                                                        } ?>" required="required" />
     </p>
 
 
@@ -43,10 +67,8 @@
         <label for="logo">
             <?php esc_html_e('Logo', 'dokan-lite'); ?> <span class="required">*</span>
         </label>
-        
-        <input type="file" class="form-control" name="logo" id="logo" disabled value="<?php if (!empty($postdata['logo'])) {
-                                                                                                echo esc_attr($postdata['logo']);
-                                                                                            } ?>" required="required" />
+
+        <input type="file" class="form-control" name="logo" id="logo" disabled required="required" />
     </div>
 
 
@@ -56,8 +78,8 @@
             <?php esc_html_e('Address', 'dokan-lite'); ?><span class="required">*</span>
         </label>
         <input type="text" class="input-text form-control" name="hospital-address" id="hospital-address" disabled value="<?php if (!empty($postdata['hospital-address'])) {
-                                                                                                    echo esc_attr($postdata['hospital-address']);
-                                                                                                } ?>" required="required" />
+                                                                                                                                echo esc_attr($postdata['hospital-address']);
+                                                                                                                            } ?>" required="required" />
     </p>
 
     <?php
@@ -77,7 +99,7 @@
     ?>
 </div>
 
-<div class="show_if_seller"  style="<?php echo esc_attr($role_style); ?>">
+<div class="show_if_seller">
 
     <div class="split-row form-row-wide">
         <p class="form-row form-group">
@@ -85,8 +107,8 @@
                 <?php esc_html_e('Company Name', 'dokan-lite'); ?> <span class="required">*</span>
             </label>
             <input type="text" class="input-text form-control" name="company-name" id="company-name" disabled value="<?php if (!empty($postdata['company-name'])) {
-                                                                                                        echo esc_attr($postdata['company-name']);
-                                                                                                    } ?>" required="required" />
+                                                                                                                            echo esc_attr($postdata['company-name']);
+                                                                                                                        } ?>" required="required" />
         </p>
     </div>
 
@@ -95,8 +117,8 @@
             <?php esc_html_e('Contact Person', 'dokan-lite'); ?> <span class="required">*</span>
         </label>
         <input type="text" class="input-text form-control" name="contact-person" id="contact-person" disabled value="<?php if (!empty($postdata['contact-person'])) {
-                                                                                                        echo esc_attr($postdata['contact-person']);
-                                                                                                    } ?>" required="required" />
+                                                                                                                            echo esc_attr($postdata['contact-person']);
+                                                                                                                        } ?>" required="required" />
     </p>
 
 
@@ -105,8 +127,8 @@
             <?php esc_html_e('Phone Number', 'dokan-lite'); ?><span class="required">*</span>
         </label>
         <input type="text" class="input-text form-control" name="seller-phone" id="seller-phone" disabled value="<?php if (!empty($postdata['seller-phone'])) {
-                                                                                                    echo esc_attr($postdata['seller-phone']);
-                                                                                                } ?>" required="required" />
+                                                                                                                        echo esc_attr($postdata['seller-phone']);
+                                                                                                                    } ?>" required="required" />
     </p>
 
 
@@ -115,9 +137,25 @@
             <?php esc_html_e('Address', 'dokan-lite'); ?><span class="required">*</span>
         </label>
         <input type="text" class="input-text form-control" name="seller-address" id="seller-address" disabled value="<?php if (!empty($postdata['seller-address'])) {
-                                                                                                    echo esc_attr($postdata['seller-address']);
-                                                                                                } ?>" required="required" />
+                                                                                                                            echo esc_attr($postdata['seller-address']);
+                                                                                                                        } ?>" required="required" />
     </p>
+
+
+    <p class="form-row form-group form-row-wide">
+        <label for="seller-categories">
+            <?php esc_html_e('List of categories you supply', 'dokan-lite'); ?><span class="required">*</span>
+        </label>
+        <select disabled multiple class="select2" style="width: 100%;"  name="seller-categories[]">
+            <option value=""></option>        
+            <?php for ($i=0; $i < count($all_categories); $i++){ ?>     
+                <option><?= $all_categories[$i]->name?></option>
+             
+            <?php } ?>         
+        </select>
+
+    </p>
+
 
     <?php
     $show_terms_condition = dokan_get_option('enable_tc_on_reg', 'dokan_general');
@@ -137,7 +175,7 @@
 </div>
 
 
-<div class="show_if_customer" >
+<div class="show_if_customer">
 
     <div class="split-row form-row-wide">
         <p class="form-row form-group">
@@ -145,8 +183,8 @@
                 <?php esc_html_e('Name', 'dokan-lite'); ?> <span class="required">*</span>
             </label>
             <input type="text" class="input-text form-control" name="customer-name" id="customer-name" value="<?php if (!empty($postdata['customer-name'])) {
-                                                                                                        echo esc_attr($postdata['customer-name']);
-                                                                                                    } ?>" required="required" />
+                                                                                                                    echo esc_attr($postdata['customer-name']);
+                                                                                                                } ?>" required="required" />
         </p>
     </div>
 
@@ -156,8 +194,8 @@
             <?php esc_html_e('Phone Number', 'dokan-lite'); ?><span class="required">*</span>
         </label>
         <input type="text" class="input-text form-control" name="customer-phone" id="customer-phone" value="<?php if (!empty($postdata['customer-phone'])) {
-                                                                                                    echo esc_attr($postdata['customer-phone']);
-                                                                                                } ?>" required="required" />
+                                                                                                                echo esc_attr($postdata['customer-phone']);
+                                                                                                            } ?>" required="required" />
     </p>
 
 
@@ -166,8 +204,8 @@
             <?php esc_html_e('Address', 'dokan-lite'); ?><span class="required">*</span>
         </label>
         <input type="text" class="input-text form-control" name="customer-address" id="customer-address" value="<?php if (!empty($postdata['customer-address'])) {
-                                                                                                    echo esc_attr($postdata['customer-address']);
-                                                                                                } ?>" required="required" />
+                                                                                                                    echo esc_attr($postdata['customer-address']);
+                                                                                                                } ?>" required="required" />
     </p>
 
     <?php

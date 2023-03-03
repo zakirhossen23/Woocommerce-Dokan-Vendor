@@ -59,6 +59,9 @@
                 <div class="col-md-3"><span><?= $s_request->post_modified ?></span></div>
                 <div class="col-md-3"><label>Describe </label></div>
                 <div class="col-md-9"><span><?= get_post_meta($s_request->ID, 'notes', true) ?></span></div>
+                <div class="col-md-3"><label>Attachment </label></div>
+                <div class="col-md-9"><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta($s_request->ID, 'attachment', true) ?>"> <?= get_post_meta($s_request->ID, 'attachment_name', true) ?></a></div>
+
 
 
             </div>
@@ -80,12 +83,12 @@
                 <p>your request have <?= count($proposals) ?> proposals</p>
 
                 <table id="proposlastable">
-
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Supplier</th>
                             <th>Price</th>
+                            <th>Attachment</th>
                             <th>Date</th>
                             <th>Status</th>
                             <th>Options</th>
@@ -101,6 +104,7 @@
 
                                 <td><a href="<?= $vendor->get_shop_url() ?>" target="_blank"><?= get_the_author_meta('display_name', $proposal->post_author) ?></a></td>
                                 <td><?= get_post_meta($proposal->ID, 'price', true) ?></td>
+                                <td> <span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta($proposal->ID, 'attachment', true) ?>"> <?= get_post_meta($proposal->ID, 'attachment_name', true) ?></a></span></td>
                                 <td><?= $proposal->post_date ?></td>
                                 <td class="status_<?= get_post_meta($proposal->ID, 'status', true) ?>"><?= get_post_meta($proposal->ID, 'status', true) ?></td>
                                 <td class="delete_access">
@@ -128,6 +132,10 @@
                                                         <label>Country of origin </label> <span><?= get_post_meta($s_request->ID, 'country', true); ?></span>
                                                     </div>
                                                     <div>
+                                                        <label>Attachment </label>
+                                                        <span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta($s_request->ID, 'attachment', true) ?>"> <?= get_post_meta($s_request->ID, 'attachment_name', true) ?></a></span>
+                                                    </div>
+                                                    <div>
                                                         <label>Status </label><span class="status_<?= $status ?>"><?= $status ?></span>
                                                     </div>
                                                     <div>
@@ -141,8 +149,9 @@
                                                     </div>
                                                     <hr>
                                                     <div>
-                                                        <label>Proposal Details : </label><br>
-                                                        <label>Seller </label> <span><?= get_the_author_meta('display_name', $proposal->post_author) ?></span>
+                                                        <label>Proposal Details : </label>
+                                                        <br>
+                                                        <label>Supplier </label> <span><?= get_the_author_meta('display_name', $proposal->post_author) ?></span>
                                                     </div>
                                                     <div>
                                                         <label>Price </label> <span><?= get_post_meta($proposal->ID, 'price', true) ?></span>
@@ -150,6 +159,10 @@
                                                     <div>
                                                         <label>Proposal Notes </label> <span style="width: 100%;">
                                                             <?= $proposal->post_content ?></span>
+                                                    </div>
+                                                    <div>
+                                                        <label>Attachment </label>
+                                                        <span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta($proposal->ID, 'attachment', true) ?>"> <?= get_post_meta($proposal->ID, 'attachment_name', true) ?></a></span>
                                                     </div>
                                                     <br>
                                                     <span><label style="width: 100%;font-weight: 600;text-align: center;">Are you sure to Approve this Proposal?</label><br>
@@ -159,10 +172,10 @@
                                                         3- a notification will be sent to us<br>
                                                         <!--4- a new custom order will be created and you can find in my account -> my order--> <br><br><br></span>
                                                     <div class="100%">
-                                                        <?php if ( $statusproposal !== "Declined"):?>
-                                                        <button class="btn btn-success btn-approve-proposal" data-class="<?= $proposal->ID ?>">Approve</button>
-                                                        
-                                                        <button class="btn btn-danger  btn-decline-proposal" data-class="<?=$proposal->ID  ?>">Decline</button>
+                                                        <?php if ($statusproposal !== "Declined") : ?>
+                                                            <button class="btn btn-success btn-approve-proposal" data-class="<?= $proposal->ID ?>">Approve</button>
+
+                                                            <button class="btn btn-danger  btn-decline-proposal" data-class="<?= $proposal->ID  ?>">Decline</button>
                                                         <?php endif ?>
                                                         <a href="#" onclick="$.fancybox.close();return false;" style="float: right;" class="btn btn-danger">Close</a>
                                                     </div>

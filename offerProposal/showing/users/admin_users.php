@@ -121,6 +121,9 @@
                                             <div class="col-md-6"></div>
 
                                             <?php if ($role == "Hospital") : ?>
+                                                <div><img src="<?= $user_details->hospital_logo ?>" style=" width: 200px; "></img></div>
+
+
                                                 <div class="col-md-6"><label>Hospital Name</label></div>
                                                 <div class="col-md-6"><span><?= $user_details->hospital_name ?></span></div>
 
@@ -146,7 +149,19 @@
 
                                                 <div class="col-md-6"><label>Address </label></div>
                                                 <div class="col-md-6"><span><?= $user_details->seller_address ?></span></div>
+
+                                                <div>
+                                                    <label>List of categories he supply: </label>
+                                                    
+                                                    <?php foreach ($user_details->seller_categories as $key => $value) {?>
+                                                        <li><?= $value ?></li>
+                                                    <?php }?>
+                                                   
+                                                </div>
+
+
                                             <?php endif; ?>
+                                            
 
                                             <?php if ($role == "Customer") : ?>
                                                 <div class="col-md-6"><label>Customer Name</label></div>
@@ -160,9 +175,8 @@
                                             <?php endif; ?>
 
 
-
-
-
+                                            <br>
+                                             
                                             <div class="col-md-6"><label>Registered Date</label></div>
                                             <div class="col-md-6"><span><?= date("Y/m/d H:i:s", strtotime($user->user_registered)) ?></span></div>
 

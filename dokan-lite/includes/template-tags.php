@@ -738,13 +738,22 @@ function dokan_get_chosen_taxonomy_attributes() {
 function dokan_seller_reg_form_fields() {
     $postdata   = wc_clean( $_POST ); //phpcs:ignore
     $role       = isset( $postdata['role'] ) ? $postdata['role'] : 'customer';
-    $role_style = ( $role === 'customer' ) ? 'display:none' : '';
+  
+    $taxonomy     = 'product_cat';
+    $orderby      = 'name';  
+  
+    $args = array(
+           'taxonomy'     => $taxonomy,
+           'orderby'      => $orderby,
+           'hide_empty'   => 0
+    );
+   $all_categories = get_categories( $args );
 
     dokan_get_template_part(
         'global/seller-registration-form', '', array(
             'postdata' => $postdata,
             'role' => $role,
-            'role_style' => $role_style,
+            'all_categories' => $all_categories,
         )
     );
 }

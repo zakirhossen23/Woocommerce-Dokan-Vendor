@@ -89,7 +89,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 				
 			</div>			
 			<div class="customer-signup-right">
-				<form method="post" class="woocommerce-form woocommerce-form-register register" action="<?php echo esc_url( $account_link );?>" <?php do_action( 'woocommerce_register_form_tag' ); ?>>
+				<form method="post" class="woocommerce-form woocommerce-form-register register" action="<?php echo esc_url( $account_link );?>" enctype="multipart/form-data" <?php do_action( 'woocommerce_register_form_tag' ); ?>>
 
 					<?php do_action( 'woocommerce_register_form_start' ); ?>
 

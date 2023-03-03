@@ -61,7 +61,7 @@ function kapee_get_myaccount_menu() {
 								);
 	$woocommerce_account_menu['quota'] = array( 
 										'icon'		=> 'fa fa-cogs',
-										 'link'		=> $dashboard_url. '/request-quota/',
+										 'link'		=> $dashboard_url. 'request-quota/',
 										 'label'	=> esc_html__('My Quotation','kapee'),
 								);
 	if( ! empty ( $tracking_pageid ) ):

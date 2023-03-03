@@ -35,7 +35,7 @@ function add_text_after_excerpt_single_product()
             <form class="xoo-el-action-form xoo-el-form-login save_request">
                 <div class="xoo-aff-group xoo-el-username_cont">
                     <div class="xoo-aff-input-group d-flex flex-column ">
-                        <label for="hospital-name">
+                        <label >
                             Quantity <span class="required">*</span>
                         </label>
                         <input type="number" class="xoo-aff-required xoo-aff-text" name="quantity" placeholder="Quantity(*)" value="" autocomplete="quantity" required>
@@ -43,7 +43,7 @@ function add_text_after_excerpt_single_product()
                 </div>
                 <div class="xoo-aff-group xoo-el-username_cont">
                     <div class="xoo-aff-input-group d-flex flex-column ">
-                        <label for="hospital-name">
+                        <label >
                             Brand Name
                         </label>
                         <input type="text" class="xoo-aff-required xoo-aff-text" name="brand" placeholder="Brand Name" autocomplete="brand">
@@ -51,7 +51,7 @@ function add_text_after_excerpt_single_product()
                 </div>
                 <div class="xoo-aff-group xoo-el-username_cont">
                     <div class="xoo-aff-input-group d-flex flex-column ">
-                        <label for="hospital-name">
+                        <label >
                             Country of origin
                         </label>
                         <input type="text" class="xoo-aff-required xoo-aff-text" name="country" placeholder="Country of origin"  autocomplete="country">
@@ -59,7 +59,7 @@ function add_text_after_excerpt_single_product()
                 </div>
                 <div class="xoo-aff-group xoo-el-username_cont">
                     <div class="xoo-aff-input-group d-flex flex-column ">
-                        <label for="hospital-name">
+                        <label >
                             Attach a photo or document
                         </label>
                         <input type="file" class="form-control" name="attachment"  required="required" />
@@ -69,7 +69,7 @@ function add_text_after_excerpt_single_product()
               
                 <div class="xoo-aff-group xoo-el-username_cont">
                     <div class="xoo-aff-input-group d-flex flex-column ">
-                        <label for="hospital-name">
+                        <label >
                             Describe
                         </label>
                         <textarea name="notes" placeholder="specific requests ..." style="width: 100%;border-color: #ccc;

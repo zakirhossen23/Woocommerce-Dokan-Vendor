@@ -220,6 +220,10 @@
                                     <label>Country of origin </label> <span><?= ($is_paid == 1) ? get_post_meta(get_the_ID(), 'country', true) : '*****'; ?></span>
                                 </div>
                                 <div>
+                                    <label>Attachment </label>
+                                    <span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta(get_the_ID(), 'attachment', true) ?>"> <?= get_post_meta(get_the_ID(), 'attachment_name', true) ?></a></span>
+                                </div>
+                                <div>
                                     <label>Status </label><span class="status_<?= $status ?>"><?= $status ?></span>
                                 </div>
                                 <div>
@@ -234,7 +238,7 @@
                                 <hr>
                                 <div>
                                     <label style=" width: auto; ">Attach a file or image </label> <span>
-                                        <input type="file" class="form-control" name="attachment" name="file_<?= get_the_ID() ?>" />
+                                        <input type="file" class="form-control" name="attachment_<?= get_the_ID() ?>" />
                                     </span>
                                 </div>
                                 <div>
@@ -252,11 +256,11 @@
                                     <label>
                                         Country of origin
                                     </label>
-                                    <input type="text" class="xoo-aff-required xoo-aff-text form-control" name="country_<?= get_the_ID() ?>" placeholder="Country of origin" value="<?= $proposal_country ?>"  autocomplete="country">
+                                    <input type="text" class="xoo-aff-required xoo-aff-text form-control" name="country_<?= get_the_ID() ?>" placeholder="Country of origin" value="<?= $proposal_country ?>" autocomplete="country">
                                 </div>
                                 <div>
                                     <label>Description* </label> <span style="width: 100%;">
-                                        <textarea name="notes_<?= get_the_ID() ?>" placeholder="details of the offer ..."  style="width: 100%;border-color: #ccc;
+                                        <textarea name="notes_<?= get_the_ID() ?>" placeholder="details of the offer ..." style="width: 100%;border-color: #ccc;
             box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);padding: 10px;resize: none;border-radius: 0px 10px 10px 0;" required><?= $proposal_notes ?></textarea>
                                     </span>
                                 </div>
@@ -267,17 +271,17 @@
 
                                     <p class="form-row form-group vendor-customer-registration">
                                         <label class="radio">
-                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?=  $proposal_term == "cash"?"checked":"" ?>  value="cash" >
+                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "cash" ? "checked" : "" ?> value="cash">
                                             <?php esc_html_e('Cash', 'dokan-lite'); ?>
                                         </label>
                                         <br />
                                         <label class="radio">
-                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?=  $proposal_term == "settlement"?"checked":"" ?> value="settlement" >
+                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "settlement" ? "checked" : "" ?> value="settlement">
                                             <?php esc_html_e('Settlement', 'dokan-lite'); ?>
                                         </label>
                                         <br />
                                         <label class="radio">
-                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?=  $proposal_term == "other"?"checked":"" ?> value="other" >
+                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "other" ? "checked" : "" ?> value="other">
                                             <?php esc_html_e('Other', 'dokan-lite'); ?>
                                         </label>
                                     </p>

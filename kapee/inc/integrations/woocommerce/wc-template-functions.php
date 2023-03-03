@@ -1736,6 +1736,8 @@ if ( ! function_exists( 'kapee_before_account_navigation' ) ) :
 
 		// Name to display
 		$current_user = wp_get_current_user();
+		$user_details = get_user_meta( get_current_user_id(), 'user_details',true);
+		$role_type = array_keys($current_user->caps)[0];
 
 		if ( $current_user->display_name ) {
 			$name = $current_user->display_name;
@@ -1746,7 +1748,11 @@ if ( ! function_exists( 'kapee_before_account_navigation' ) ) :
 
 		echo '<div class="MyAccount-navigation-wrapper">';
 			echo '<div class="kapee-user-profile">';
-				echo '<div class="user-avatar">'. get_avatar( $current_user->user_email, 128 ) .'</div>';
+				if ($role_type == "hospital"){
+					echo '<img src="'.((object)$user_details)->hospital_logo.'" class="avatar avatar-128 photo" height="128" width="128" loading="lazy" decoding="async">';
+				}else{
+					echo '<div class="user-avatar">'. get_avatar( $current_user->user_email, 128 ) .'</div>';
+				}
 				echo '<div class="user-info">';
 					echo '<h5 class="display-name">'. esc_attr( $name ) .'</h5>';
 				echo '</div>';
