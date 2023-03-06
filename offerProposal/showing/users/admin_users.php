@@ -109,12 +109,12 @@
                 <td class="d-none d-sm-block"><?= $status ?></td>
                 <td class="delete_access" data-class="<?= $product ?>" data-user="<?= $product ?>">
                     <span>
-                        <div id="modal_<?= $user->ID ?>" class="modal modal-user" style="left: 24%; height: auto;width: 50% !important;">
+                        <div id="modal_<?= $user->ID ?>" class="modal modal-user">
                             <!-- show proposal edits  -->
                             <!-- panel  -->
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
+                            <div class="container-modal">
+                                <div class="row" style="background: white;">
+                                    <div class="col-md-12" style="padding: 2rem;">
                                         <!-- ditals -->
                                         <div class="row">
                                             <div class="col-md-6"><label style="font-size: 1.4rem;"><?= $user->user_nicename ?>(<?= $role ?>)</label></div>
@@ -152,16 +152,16 @@
 
                                                 <div>
                                                     <label>List of categories he supply: </label>
-                                                    
-                                                    <?php foreach ($user_details->seller_categories as $key => $value) {?>
+
+                                                    <?php foreach ($user_details->seller_categories as $key => $value) { ?>
                                                         <li><?= $value ?></li>
-                                                    <?php }?>
-                                                   
+                                                    <?php } ?>
+
                                                 </div>
 
 
                                             <?php endif; ?>
-                                            
+
 
                                             <?php if ($role == "Customer") : ?>
                                                 <div class="col-md-6"><label>Customer Name</label></div>
@@ -176,7 +176,7 @@
 
 
                                             <br>
-                                             
+
                                             <div class="col-md-6"><label>Registered Date</label></div>
                                             <div class="col-md-6"><span><?= date("Y/m/d H:i:s", strtotime($user->user_registered)) ?></span></div>
 

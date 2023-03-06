@@ -21,26 +21,42 @@ a.selected {
   border-color: #dc3545 !important;
 }
 .modal-request {
-  margin: 40px auto !important;
-  width: 50% !important;
+  background: none !important;
+  width: 100% !important;
+  margin: 2rem 0 !important;
+  height: 92vh !important;
+  padding: 0 !important;
+}.modal-user {
+  background: none !important;
+  width: 100% !important;
+  margin: 2rem 0 !important;
+  height: 92vh !important;
   padding: 0 !important;
 }
 .messagepop {
-  background-color: #FFFFFF;
-border: 1px solid #999999;
-cursor: default;
-display: none;
-margin-top: 15px;
-position: fixed;
-text-align: left;
-width: 394px;
-z-index: 50;
-padding: 25px 25px 20px;
-z-index: 1000;
-top: 0;
-left: calc(50% - 200px);
+  background-color: #00000094;
+  border: 1px solid #999999;
+  cursor: default;
+  display: none;
+  position: fixed;
+  text-align: left;
+  width: 100vw;
+  z-index: 1000;
+  overflow-y: auto;
+  height: 100%;
+  left: 0;
+  top: 0;
+  justify-content: center;
 }
-
+form.xoo-el-action-form{
+  margin: 5px !important;
+}
+.save_request{
+  width: 394px;
+  background: white;
+  padding: 25px 25px 20px;
+  height: fit-content;
+}
 label {
   display: block;
   margin-bottom: 3px;
@@ -102,6 +118,7 @@ cursor: pointer;
   font-size: 1rem;
   width: 200px;
   padding: 10px;
+  text-indent: -7px;
 }
 .modal-request span {
   padding: 10px;
@@ -220,9 +237,55 @@ cursor: pointer;
   color: #777;
 }
 .row.my-4.req_details label {
-  padding: 10px 0;
   font-size: 1rem;
 }
 .status_Ignored {
   color: #999;
+}
+
+
+
+/* Container of Modal */
+
+
+.container-modal {padding: 0 2vw;}
+
+@media (min-width: 768px) {
+    .container-modal {
+        padding:0 14vw;
+    }
+}
+
+
+@media (min-width: 1288px) {
+    .container-modal {
+        padding:0 19vw;
+    }
+}
+
+
+
+@media (min-width: 1600px) {
+    .container-modal {
+        padding:0 25vw;
+    }
+}
+
+
+
+@media (min-width: 2500px) {
+    .container-modal {
+        padding:0 30vw;
+    }
+}
+
+
+@media (min-width: 3000px) {
+    .container-modal {
+        padding:0 36vw;
+    }
+}
+
+.container-modal .card {
+  margin: 0 !important;
 }

@@ -145,7 +145,7 @@
         <span> showing <?= $query_quiz->post_count ?> out of <?= $count_res ?> </span>
 
     </div>
-    <table>
+    <table id="requests-table" class="collapsed dataTable dtr-inline no-footer nowrap table table-bordered" cellspacing="0">
         <tr>
             <th class="d-none d-sm-block">#</th>
             <th>Product</th>
@@ -194,10 +194,10 @@
                 <td><?= ($chosen = get_post_meta(get_the_ID(), 'chosen', true)) ? '#' . $chosen : '' ?></td>
                 <td class="delete_access" data-class="<?= $product ?>" data-user="<?= $product ?>">
                     <span>
-                        <div id="modal_<?= get_the_ID() ?>" class="modal modal-request" style="left: 24%;">
+                        <div id="modal_<?= get_the_ID() ?>" class="modal modal-request" style="">
                             <!-- show proposal edits  -->
                             <!-- panel  -->
-                            <div class="container">
+                            <div class="container-modal">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <!-- Nav tabs -->
@@ -255,26 +255,28 @@
                                                 <!-- details -->
 
                                                 <div role="tabpanel" class="tab-pane profile main-quiz-user">
-                                                    <table>
+                                                    <table class="table  display nowrap" cellspacing="0">
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>Supplier</th>
-                                                            <th>Price</th>
-                                                            <th>Attachment</th>
-                                                            <th>Date</th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                        <?php foreach ($proposals as $proposal) { ?>
-                                                            <tr>
-                                                                <td><?= ($proposal->ID) ?></td>
-                                                                <td><?= get_the_author_meta('display_name', $proposal->post_author) ?></td>
-                                                                <td><?= get_post_meta($proposal->ID, 'price', true) ?></td>
-                                                                <td>  <span ><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta($proposal->ID, 'attachment', true) ?>"> <?= get_post_meta($proposal->ID, 'attachment_name', true) ?></a></span></td>
-                                                                <td><?= $proposal->post_date ?></td>
-                                                                <td class="status_<?= get_post_meta($proposal->ID, 'status', true) ?>"><?= get_post_meta($proposal->ID, 'status', true) ?></td>
-
+                                                                <th>ID</th>
+                                                                <th>Supplier</th>
+                                                                <th>Price</th>
+                                                                <th>Attachment</th>
+                                                                <th>Date</th>
+                                                                <th>Status</th>
                                                             </tr>
-                                                        <?php } ?>
+                                                            <?php foreach ($proposals as $proposal) { ?>
+                                                                <tr>
+                                                                    <td><?= ($proposal->ID) ?></td>
+                                                                    <td><?= get_the_author_meta('display_name', $proposal->post_author) ?></td>
+                                                                    <td><?= get_post_meta($proposal->ID, 'price', true) ?></td>
+                                                                    <td> <span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta($proposal->ID, 'attachment', true) ?>"> <?= get_post_meta($proposal->ID, 'attachment_name', true) ?></a></span></td>
+                                                                    <td><?= $proposal->post_date ?></td>
+                                                                    <td class="status_<?= get_post_meta($proposal->ID, 'status', true) ?>"><?= get_post_meta($proposal->ID, 'status', true) ?></td>
+
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+
                                                     </table>
                                                 </div>
                                             </div>
@@ -316,6 +318,8 @@
     </table>
 
 </div>
+
+
 
 <!-- products  -->
 

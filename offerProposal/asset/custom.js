@@ -1,7 +1,7 @@
 function deselect(e) {
-    jQuery('.pop').slideFadeToggle(function () {
-        e.removeClass('selected');
-    });
+    e.removeClass('selected');
+    document.body.classList.remove("overflow-hidden");
+    jQuery('.pop')[0].classList.remove("d-flex");
 }
 
 jQuery(function () {
@@ -9,8 +9,10 @@ jQuery(function () {
         if (jQuery(this).hasClass('selected')) {
             deselect(jQuery(this));
         } else {
+            document.body.classList.add("overflow-hidden");
+            jQuery('.pop')[0].classList.add("d-flex");
             jQuery(this).addClass('selected');
-            jQuery('.pop').slideFadeToggle();
+            // jQuery('.pop').slideFadeToggle();
         }
         return false;
     });
@@ -45,7 +47,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 jQuery(document).ready(function ($) {
-
+ 
     // table
     //jQuery('#proposlas-table').DataTable({});
     var dt = $('#proposlastable').DataTable({
@@ -61,6 +63,7 @@ jQuery(document).ready(function ($) {
         "aoColumnDefs": [
             { 'bSortable': false, 'aTargets': [0, 5] }
         ],
+        responsive: true,
         pageLength: 25
     });
 
@@ -82,7 +85,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         jQuery('.button').prop('disabled', true);
         // save request by ajax
-        let formData = new FormData();           
+        let formData = new FormData();
         formData.append("action", 'send_rfq');
         formData.append("quantity", jQuery('input[name=quantity]').val());
         formData.append("brand", jQuery('input[name=brand]').val());
@@ -90,7 +93,7 @@ jQuery(document).ready(function ($) {
         formData.append("attachment", jQuery('input[name=attachment]')[0].files[0]);
         formData.append("product", jQuery('input[name=product]').val());
         formData.append("notes", jQuery('textarea[name=notes]').val());
-     
+
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
         $.ajax({
             url: xoo_el_localize.adminurl,
@@ -98,18 +101,18 @@ jQuery(document).ready(function ($) {
             data: formData,
             contentType: false,
             processData: false,
-            success: function(response){
+            success: function (response) {
                 if (response == 'success') {
                     //jQuery('.messagepop form').fadeOut();
                     jQuery('.xoo-aff-group').fadeOut();
                     jQuery('.save_request_btn').fadeOut()
                     jQuery('.req_confirm_message').fadeIn();
                 } else alert('error happpen');
-    
+
                 jQuery('.btn').prop('disabled', false);
             },
         });
-       
+
         return false;
     });
 
@@ -215,17 +218,17 @@ jQuery(document).ready(function ($) {
         if (jQuery('input[name=price_' + req_id + ']').val() == "") return alert('submitted price is not a number');
         if (jQuery('input[name=brand_' + req_id + ']').val() == "") return alert('submitted Brand is empty');
         if (jQuery('input[name=notes_' + req_id + ']').val() == "") return alert('submitted description is empty');
-       
-        let formData = new FormData();           
+
+        let formData = new FormData();
         formData.append("action", 'submit_proposal');
-        formData.append("request_id",req_id);
+        formData.append("request_id", req_id);
         formData.append("price", jQuery('input[name=price_' + req_id + ']').val());
         formData.append("brand", jQuery('input[name=brand_' + req_id + ']').val());
         formData.append("country", jQuery('input[name=country_' + req_id + ']').val());
         formData.append("attachment", jQuery('input[name=attachment_' + req_id + ']')[0].files[0]);
         formData.append("notes", jQuery('textarea[name=notes_' + req_id + ']').val());
-        formData.append("term", jQuery('textarea[name=term_' + req_id + ']:checked').val());
-     
+        formData.append("term", jQuery('[name=term_' + req_id + ']:checked').val());
+
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
         $.ajax({
             url: xoo_el_localize.adminurl,
@@ -233,7 +236,7 @@ jQuery(document).ready(function ($) {
             data: formData,
             contentType: false,
             processData: false,
-            success: function(response){
+            success: function (response) {
                 if (response == 'success') {
                     alert('proposal submitted succesfully.');
                     location.reload();

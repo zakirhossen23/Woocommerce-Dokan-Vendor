@@ -44,7 +44,7 @@ function add_text_after_excerpt_single_product()
                 <div class="xoo-aff-group xoo-el-username_cont">
                     <div class="xoo-aff-input-group d-flex flex-column ">
                         <label >
-                            Brand Name
+                           Preferred Brand or Leave as blank
                         </label>
                         <input type="text" class="xoo-aff-required xoo-aff-text" name="brand" placeholder="Brand Name" autocomplete="brand">
                     </div>
@@ -52,7 +52,7 @@ function add_text_after_excerpt_single_product()
                 <div class="xoo-aff-group xoo-el-username_cont">
                     <div class="xoo-aff-input-group d-flex flex-column ">
                         <label >
-                            Country of origin
+                        Preferred Country of origin or Leave as blank
                         </label>
                         <input type="text" class="xoo-aff-required xoo-aff-text" name="country" placeholder="Country of origin"  autocomplete="country">
                     </div>
@@ -88,12 +88,12 @@ function add_text_after_excerpt_single_product()
             </form>
         </div>
 
-        <a href="/contact" id="request_quota">request a quote</a>
+        <a href="/contact" id="request_quota">ask for a quotation</a>
 <?php
         $post_excerpt .= ob_get_contents();
         ob_end_clean();
     } else {
-        $post_excerpt .= '<a id="request_quota" class="selected" onclick="return $(\'.customer-signinup\').click()" style="cursor: pointer;">request a quote</a>';
+        $post_excerpt .= '<a id="request_quota" class="selected" onclick="return $(\'.customer-signinup\').click()" style="cursor: pointer;">ask for a quotation</a>';
     }
 
     echo $post_excerpt;
@@ -102,8 +102,12 @@ function add_text_after_excerpt_single_product()
 add_action('wp_enqueue_scripts', 'my_custom_enqueue_scripts', 10);
 function my_custom_enqueue_scripts()
 {
-    wp_enqueue_style('jquery-datatables-css', '//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css');
-    wp_enqueue_script('jquery-datatables-js', '//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js', array('jquery'));
+    wp_enqueue_style('jquery-datatables-css', '//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css');
+    wp_enqueue_script('jquery-datatables-js', '//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js', array('jquery'));
+
+
+    wp_enqueue_style('jquery-datatables-responsive-css', '//cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css');
+    wp_enqueue_script('jquery-datatables-responsive-js', '//cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js', array('jquery'));
 }
 
 function load_external_jQuery()

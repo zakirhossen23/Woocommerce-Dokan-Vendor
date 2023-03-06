@@ -186,117 +186,121 @@
 
                 <td class="delete_access" data-class="<?= $product ?>" data-user="<?= $product ?>">
                     <span>
-                        <div id="modal_<?= get_the_ID() ?>" class="modal modal-request" style="left: 24%;margin-bottom: 6px;height: 93vh !important;">
+                        <div id="modal_<?= get_the_ID() ?>" class="modal modal-request">
                             <!-- show proposal edits  -->
-                            <div class="container p-4">
-                                <div>
-                                    <label style="font-size: 1.4rem;">Product Request</label>
-                                </div>
-                                <div>
-                                    <label>Product </label> <span><?= get_the_title($product) ?></span>
-                                </div>
-                                <div>
-                                    <?php
-                                    $user_info = get_userdata($user);
-                                    $role = array_keys($user_info->caps)[0];
-                                    if ($role == "seller") $role = "Supplier";
-                                    if ($role == "customer") $role = "Customer";
-                                    if ($role == "hospital") $role = "Hospital";
+                            <div class="container-modal">
+                                <div class="row" style="background: white;">
+                                    <div class="col-md-12" style="padding: 2rem;">
+                                        <div>
+                                            <label style="font-size: 1.4rem;">Product Request</label>
+                                        </div>
+                                        <div>
+                                            <label>Product </label> <span><?= get_the_title($product) ?></span>
+                                        </div>
+                                        <div>
+                                            <?php
+                                            $user_info = get_userdata($user);
+                                            $role = array_keys($user_info->caps)[0];
+                                            if ($role == "seller") $role = "Supplier";
+                                            if ($role == "customer") $role = "Customer";
+                                            if ($role == "hospital") $role = "Hospital";
 
-                                    $is_paid = get_the_author_meta('is_paid', get_current_user_id());
-                                    ?>
-                                    <label>User </label> <span><?= ($is_paid == 1) ? $user_info->user_login : '*****'; ?></span>
-                                </div>
-                                <div>
-                                    <label>User Type</label> <span><?= ($is_paid == 1) ? $role : '*****'; ?></span>
-                                </div>
-                                <div>
-                                    <label>Quantity </label> <span><?= get_post_meta(get_the_ID(), 'quantity', true) ?></span>
-                                </div>
-                                <div>
-                                    <label>Brand Name </label> <span><?= ($is_paid == 1) ? get_post_meta(get_the_ID(), 'brand', true) : '*****'; ?></span>
-                                </div>
-                                <div>
-                                    <label>Country of origin </label> <span><?= ($is_paid == 1) ? get_post_meta(get_the_ID(), 'country', true) : '*****'; ?></span>
-                                </div>
-                                <div>
-                                    <label>Attachment </label>
-                                    <span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta(get_the_ID(), 'attachment', true) ?>"> <?= get_post_meta(get_the_ID(), 'attachment_name', true) ?></a></span>
-                                </div>
-                                <div>
-                                    <label>Status </label><span class="status_<?= $status ?>"><?= $status ?></span>
-                                </div>
-                                <div>
-                                    <label>Date </label><span><?= date('Y-m-d h:i:s A', get_post_time()) ?></span>
-                                </div>
-                                <div>
-                                    <label>last update</label><span><?= date('Y-m-d h:i:s A', get_post_modified_time()) ?></span>
-                                </div>
-                                <div>
-                                    <label>Notes </label> <span><?= get_post_meta(get_the_ID(), 'notes', true) ?></span>
-                                </div>
-                                <hr>
-                                <div>
-                                    <label style=" width: auto; ">Attach a file or image </label> <span>
-                                        <input type="file" class="form-control" name="attachment_<?= get_the_ID() ?>" />
-                                    </span>
-                                </div>
-                                <div>
-                                    <label>Price* </label> <span>
-                                        <input type="number" class="xoo-aff-required xoo-aff-text form-control" name="price_<?= get_the_ID() ?>" placeholder="Price" value="<?= $proposal_price ?>" autocomplete="price" required>
-                                    </span>
-                                </div>
-                                <div>
-                                    <label>Brand* </label> <span>
-                                        <input type="text" class="xoo-aff-required xoo-aff-text form-control" name="brand_<?= get_the_ID() ?>" placeholder="Brand" value="<?= $proposal_brand ?>" autocomplete="brand" required>
-                                    </span>
-                                </div>
+                                            $is_paid = get_the_author_meta('is_paid', get_current_user_id());
+                                            ?>
+                                            <label>User </label> <span><?= ($is_paid == 1) ? $user_info->user_login : '*****'; ?></span>
+                                        </div>
+                                        <div>
+                                            <label>User Type</label> <span><?= ($is_paid == 1) ? $role : '*****'; ?></span>
+                                        </div>
+                                        <div>
+                                            <label>Quantity </label> <span><?= get_post_meta(get_the_ID(), 'quantity', true) ?></span>
+                                        </div>
+                                        <div>
+                                            <label>Brand Name </label> <span><?= ($is_paid == 1) ? get_post_meta(get_the_ID(), 'brand', true) : '*****'; ?></span>
+                                        </div>
+                                        <div>
+                                            <label>Country of origin </label> <span><?= ($is_paid == 1) ? get_post_meta(get_the_ID(), 'country', true) : '*****'; ?></span>
+                                        </div>
+                                        <div>
+                                            <label>Attachment </label>
+                                            <span><a target="_blank" style=" color: #5472d2; " href="<?= get_post_meta(get_the_ID(), 'attachment', true) ?>"> <?= get_post_meta(get_the_ID(), 'attachment_name', true) ?></a></span>
+                                        </div>
+                                        <div>
+                                            <label>Status </label><span class="status_<?= $status ?>"><?= $status ?></span>
+                                        </div>
+                                        <div>
+                                            <label>Date </label><span><?= date('Y-m-d h:i:s A', get_post_time()) ?></span>
+                                        </div>
+                                        <div>
+                                            <label>last update</label><span><?= date('Y-m-d h:i:s A', get_post_modified_time()) ?></span>
+                                        </div>
+                                        <div>
+                                            <label>Notes </label> <span><?= get_post_meta(get_the_ID(), 'notes', true) ?></span>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <label style=" width: auto; ">Attach a file or image </label> <span>
+                                                <input type="file" class="form-control" name="attachment_<?= get_the_ID() ?>" />
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <label>Price* </label> <span>
+                                                <input type="number" class="xoo-aff-required xoo-aff-text form-control" name="price_<?= get_the_ID() ?>" placeholder="Price" value="<?= $proposal_price ?>" autocomplete="price" required>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <label>Brand* </label> <span>
+                                                <input type="text" class="xoo-aff-required xoo-aff-text form-control" name="brand_<?= get_the_ID() ?>" placeholder="Brand" value="<?= $proposal_brand ?>" autocomplete="brand" required>
+                                            </span>
+                                        </div>
 
-                                <div>
-                                    <label>
-                                        Country of origin
-                                    </label>
-                                    <input type="text" class="xoo-aff-required xoo-aff-text form-control" name="country_<?= get_the_ID() ?>" placeholder="Country of origin" value="<?= $proposal_country ?>" autocomplete="country">
-                                </div>
-                                <div>
-                                    <label>Description* </label> <span style="width: 100%;">
-                                        <textarea name="notes_<?= get_the_ID() ?>" placeholder="details of the offer ..." style="width: 100%;border-color: #ccc;
+                                        <div>
+                                            <label>
+                                                Country of origin
+                                            </label>
+                                            <input type="text" class="xoo-aff-required xoo-aff-text form-control" name="country_<?= get_the_ID() ?>" placeholder="Country of origin" value="<?= $proposal_country ?>" autocomplete="country">
+                                        </div>
+                                        <div>
+                                            <label>Description* </label> <span style="width: 100%;">
+                                                <textarea name="notes_<?= get_the_ID() ?>" placeholder="details of the offer ..." style="width: 100%;border-color: #ccc;
             box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);padding: 10px;resize: none;border-radius: 0px 10px 10px 0;" required><?= $proposal_notes ?></textarea>
-                                    </span>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                Term of payment
+                                            </label>
+
+                                            <p class="form-row form-group vendor-customer-registration">
+                                                <label class="radio">
+                                                    <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "cash" ? "checked" : "" ?> value="cash">
+                                                    <?php esc_html_e('Cash', 'dokan-lite'); ?>
+                                                </label>
+                                                <br />
+                                                <label class="radio">
+                                                    <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "settlement" ? "checked" : "" ?> value="settlement">
+                                                    <?php esc_html_e('Settlement', 'dokan-lite'); ?>
+                                                </label>
+                                                <br />
+                                                <label class="radio">
+                                                    <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "other" ? "checked" : "" ?> value="other">
+                                                    <?php esc_html_e('Other', 'dokan-lite'); ?>
+                                                </label>
+                                            </p>
+                                        </div>
+
+                                        <br>
+                                        <?php if ($proposal_status == 'Waiting') { ?>
+                                            <button class="btn btn-primary btn-submit-proposal" data-class="<?= get_the_ID() ?>">Submit</button>
+                                        <?php } else if ($proposal_status == 'Submitted') { ?>
+                                            <button class="btn btn-danger  btn-remove-proposal" data-class="<?= $proposal_id ?>">Remove</button>
+                                        <?php } ?>
+                                        <a href="#" onclick="$.fancybox.close();jQuery('body').removeClass('modal-open');return false;" style="float: right;" class="btn btn-danger">Close</a>
+                                        <!-- show proposal edits  -->
+                                    </div>
                                 </div>
-                                <div>
-                                    <label>
-                                        Term of payment
-                                    </label>
-
-                                    <p class="form-row form-group vendor-customer-registration">
-                                        <label class="radio">
-                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "cash" ? "checked" : "" ?> value="cash">
-                                            <?php esc_html_e('Cash', 'dokan-lite'); ?>
-                                        </label>
-                                        <br />
-                                        <label class="radio">
-                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "settlement" ? "checked" : "" ?> value="settlement">
-                                            <?php esc_html_e('Settlement', 'dokan-lite'); ?>
-                                        </label>
-                                        <br />
-                                        <label class="radio">
-                                            <input type="radio" name="term_<?= get_the_ID() ?>" <?= $proposal_term == "other" ? "checked" : "" ?> value="other">
-                                            <?php esc_html_e('Other', 'dokan-lite'); ?>
-                                        </label>
-                                    </p>
-                                </div>
-
-
-                                <br>
-                                <?php if ($proposal_status == 'Waiting') { ?>
-                                    <button class="btn btn-primary btn-submit-proposal" data-class="<?= get_the_ID() ?>">Submit</button>
-                                <?php } else if ($proposal_status == 'Submitted') { ?>
-                                    <button class="btn btn-danger  btn-remove-proposal" data-class="<?= $proposal_id ?>">Remove</button>
-                                <?php } ?>
-                                <a href="#" onclick="$.fancybox.close();jQuery('body').removeClass('modal-open');return false;" style="float: right;" class="btn btn-danger">Close</a>
-                                <!-- show proposal edits  -->
                             </div>
+
                         </div>
                         <!-- Link to open the modal -->
 

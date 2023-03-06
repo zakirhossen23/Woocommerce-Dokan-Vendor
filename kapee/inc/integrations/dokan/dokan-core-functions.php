@@ -38,9 +38,6 @@ function kapee_get_dokan_vendor_name(){
 	} 
 	$sold_by_label = apply_filters('kapee_sold_by_label',esc_html__( 'Sold By : ', 'kapee' ));
 	?>
-	<div class="sold-by">
-		<span class="sold-by-label"><?php echo esc_html( $sold_by_label ); ?> </span>
-		<a href="<?php echo esc_url( dokan_get_store_url( $author_id ) ); ?>"><?php echo esc_html( $shop_name ); ?></a>
-	</div>
+	
 	<?php	
 }
